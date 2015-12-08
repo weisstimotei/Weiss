@@ -1,0 +1,5 @@
+C:\Users\Weiss\Documents\GitHub\Weiss\Weiss\BankRate\obj\Debug\BankRate.csprojResolveAssemblyReference.cache
+C:\Users\Weiss\Documents\GitHub\Weiss\Weiss\BankRate\bin\Debug\BankRate.dll
+C:\Users\Weiss\Documents\GitHub\Weiss\Weiss\BankRate\bin\Debug\BankRate.pdb
+C:\Users\Weiss\Documents\GitHub\Weiss\Weiss\BankRate\obj\Debug\BankRate.dll
+C:\Users\Weiss\Documents\GitHub\Weiss\Weiss\BankRate\obj\Debug\BankRate.pdb
