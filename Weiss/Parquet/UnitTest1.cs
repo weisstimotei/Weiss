@@ -10,7 +10,7 @@ namespace Parquet
         public void TestMethod1()
         {
             decimal parquet = NumberofParquet(1, 1, 1, 1);
-            decimal forhelp = 115/100;
+            decimal forhelp = 115m/100;
                 Assert.AreEqual( forhelp,parquet);
         }
         decimal NumberofParquet(decimal m, decimal n, decimal a, decimal b)
