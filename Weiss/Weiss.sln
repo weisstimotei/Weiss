@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parquet", "Parquet\Parquet.csproj", "{9AA63726-5CB9-417D-9AEC-F66C5C2FF587}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavement", "Pavement\Pavement.csproj", "{5B69FED5-D32F-48A8-8C1A-7F0600222DAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9AA63726-5CB9-417D-9AEC-F66C5C2FF587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AA63726-5CB9-417D-9AEC-F66C5C2FF587}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AA63726-5CB9-417D-9AEC-F66C5C2FF587}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AA63726-5CB9-417D-9AEC-F66C5C2FF587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B69FED5-D32F-48A8-8C1A-7F0600222DAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B69FED5-D32F-48A8-8C1A-7F0600222DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B69FED5-D32F-48A8-8C1A-7F0600222DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B69FED5-D32F-48A8-8C1A-7F0600222DAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
