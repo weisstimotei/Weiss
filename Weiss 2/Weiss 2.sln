@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxi fare", "Taxi fare\Taxi fare.csproj", "{D5C2B72C-5886-4305-9B48-FE67A14D8B28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debt", "Debt\Debt.csproj", "{635FD882-01DF-46CF-B49A-86B2E6A85D1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D5C2B72C-5886-4305-9B48-FE67A14D8B28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5C2B72C-5886-4305-9B48-FE67A14D8B28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5C2B72C-5886-4305-9B48-FE67A14D8B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5C2B72C-5886-4305-9B48-FE67A14D8B28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{635FD882-01DF-46CF-B49A-86B2E6A85D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{635FD882-01DF-46CF-B49A-86B2E6A85D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{635FD882-01DF-46CF-B49A-86B2E6A85D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{635FD882-01DF-46CF-B49A-86B2E6A85D1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
