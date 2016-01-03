@@ -9,11 +9,12 @@ namespace Debt
         [TestMethod]
         public void PenaltiesGrade1()
         {
-            Assert.AreEqual(55,MonthlyRent(50,5,2));
+            Assert.AreEqual(55,MonthlyRent(50,2));
         }
-        decimal MonthlyRent(int initialRent,int penalties, int days)
+        decimal MonthlyRent(int initialRent, int days)
         {
-            decimal a = (initialRent * penalties);
+            int[] penalties = {5 };
+            decimal a = (initialRent * penalties[0]);
             return (a / 100) * days + initialRent;
         }
     }
