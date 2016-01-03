@@ -29,12 +29,16 @@ namespace Taxi_fare
 
         decimal CalculateTaxiFare(int distanceInKm, int hour)
         {
-            decimal[] daytimePrices = { 5, 8, 6 };
-            decimal[] nighttimePrices = { 7 };
-            decimal[] prices = IsDaytime(hour) ? daytimePrices : nighttimePrices;
-            decimal pricePerKm = GetPricePerKm(distanceInKm,prices);
+           
+            decimal pricePerKm = GetPricePerKm(distanceInKm,GetPrices(hour));
             return distanceInKm * pricePerKm;
 
+        }
+        decimal[] GetPrices(int hour)
+        {
+            decimal[] daytimePrices = { 5, 8, 6 };
+            decimal[] nighttimePrices = { 7 };
+            return IsDaytime(hour) ? daytimePrices : nighttimePrices;
         }
 
         private bool IsDaytime(int hour)
