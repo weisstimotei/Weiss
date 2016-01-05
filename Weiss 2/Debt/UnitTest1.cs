@@ -16,25 +16,27 @@ namespace Debt
         {
             Assert.AreEqual(200, MonthlyRent(100, 20));
         }
-
+        [TestMethod]
+        public void PenaltiesGrade3()
+        {
+            Assert.AreEqual(500, MonthlyRent(100, 40));
+        }
         decimal MonthlyRent(int initialRent, int days)
         {
-            
-
-
-            decimal a = (initialRent * getPenalty(days));
+            decimal a = (initialRent * GetPenalty(days));
             return (a / 100) * days + initialRent;
         }
-       private static int getPenalty(int days)
+       private static int GetPenalty(int days)
         {
             int[] timeIntervals = { 10, 30, 40 };
             int[] penalties = { 2, 5, 10 };
             if (days <= timeIntervals[0])
                 return penalties[0];
-            else if (days <= timeIntervals[1])
+            if (days <= timeIntervals[1])
                 return penalties[1];
-            else if (days <= timeIntervals[2])
+            else
                 return penalties[2];
+           
         }
     }
 }
