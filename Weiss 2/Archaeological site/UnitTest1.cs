@@ -17,9 +17,15 @@ namespace Archaeological_site
             // ax, ay, bx, by, cx, cy are the coordinates of the three columns
             double a = SideA(bx, by, cx, cy);
             double b = SideB(ax, ay, cx, cy);
-            double c = Math.Sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay));
+            double c = SideC(ax, ay, bx, by);
             double p = (a + b + c) / 2;
             return Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+        }
+
+        private static double SideC(double ax, double ay, double bx, double by)
+        {
+            double c = Math.Sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay));
+            return c;
         }
 
         private static double SideB(double ax, double ay, double cx, double cy)
