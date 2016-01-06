@@ -21,6 +21,11 @@ namespace FizzBuzz
         {
             Assert.AreEqual("FizzBuzz", GetFizzBuzz(30));
         }
+        [TestMethod]
+        public void ForAnotherNumbers()
+        {
+            Assert.AreEqual("Put another value", GetFizzBuzz(31));
+        }
         string GetFizzBuzz(int number)
         {
             if (number % 3 ==0 && number % 5 == 0)
