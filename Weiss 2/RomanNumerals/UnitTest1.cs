@@ -11,6 +11,11 @@ namespace RomanNumerals
         {
             Assert.AreEqual("I", RomanNumberConvertor(1));
         }
+        [TestMethod]
+        public void number10()
+        {
+            Assert.AreEqual("X", RomanNumberConvertor(10));
+        }
         public static string RomanNumberConvertor(int number)
         {
             string[] codification = {"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
