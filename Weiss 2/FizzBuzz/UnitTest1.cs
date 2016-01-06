@@ -16,14 +16,21 @@ namespace FizzBuzz
         {
             Assert.AreEqual("Buzz", GetFizzBuzz(25));
         }
+        [TestMethod]
+        public void ObtainFizzBuzz()
+        {
+            Assert.AreEqual("FizzBuzz", GetFizzBuzz(30));
+        }
         string GetFizzBuzz(int number)
         {
-            if (number % 3 == 0)
-                return "Fizz";
+            if (number % 3 ==0 && number % 5 == 0)
+                return "FizzBuzz";
             if (number % 5 == 0)
                 return "Buzz";
+            if (number % 3 == 0)
+                return "Fizz";
             else
-                return " ";
+                return "Put another value";
         }
     }
 }
