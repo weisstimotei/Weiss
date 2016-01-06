@@ -11,6 +11,11 @@ namespace Melon
         {
             Assert.AreEqual("DA",GetTheAnswer(8));
         }
+        [TestMethod]
+        public void IfTheAnswerIsFalse()
+        {
+            Assert.AreEqual("NU", GetTheAnswer(9));
+        }
         string GetTheAnswer(int kg)
         {
             if (kg % 2==0)
