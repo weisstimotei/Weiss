@@ -11,9 +11,19 @@ namespace Chess_Table
         {
             Assert.AreEqual(1,GetChessTableSquares(1));
         }
+        [TestMethod]
+        public void ForSize2()
+        {
+            Assert.AreEqual(5, GetChessTableSquares(2));
+        }
         decimal GetChessTableSquares(int size)
         {
-            return 1; 
+            int total = 0;
+            for (int i = 1; i <= size; i++)
+            {
+                total += i * i;
+            }
+                return total; 
         }
     }
 }
