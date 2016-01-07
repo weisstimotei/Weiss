@@ -16,6 +16,11 @@ namespace Chess_Table
         {
             Assert.AreEqual(5, GetChessTableSquares(2));
         }
+        [TestMethod]
+        public void ForSize8()
+        {
+            Assert.AreEqual(204, GetChessTableSquares(8));
+        }
         decimal GetChessTableSquares(int size)
         {
             int total = 0;
