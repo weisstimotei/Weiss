@@ -16,11 +16,18 @@ namespace ExcelColumns
         {
             Assert.AreEqual("Z", GetTheCodification(26));
         }
+        [TestMethod]
+        public void TestForNumber52()
+        {
+            Assert.AreEqual("AZ", GetTheCodification(52));
+        }
         string GetTheCodification(int column)
     {
         string[] key = {"","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
       if (column<=26)
             return key[column];
+      if (column<=52)    
+            return key[column /27]+key[column - 26];
       return "";
     }
     }
