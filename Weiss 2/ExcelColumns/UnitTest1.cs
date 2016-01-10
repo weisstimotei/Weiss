@@ -30,11 +30,16 @@ namespace ExcelColumns
     {
         string[] key = {"","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
         if (GetTheParticularisation(column))
-          return key[column / 26] + key[1];
+            return ReturnForParticularisation(column, key);
       else   
             return key[column /27]+key[column - 26*(column/27)];
      
     }
+
+        private static string ReturnForParticularisation(int column, string[] key)
+        {
+            return key[column / 26] + key[1];
+        }
 
         private static bool GetTheParticularisation(int column)
         {
