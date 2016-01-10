@@ -29,11 +29,16 @@ namespace ExcelColumns
         string GetTheCodification(int column)
     {
         string[] key = {"","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
-      if (((column-1)%26==0))
+        if (GetTheParticularisation(column))
           return key[column / 26] + key[1];
       else   
             return key[column /27]+key[column - 26*(column/27)];
      
     }
+
+        private static bool GetTheParticularisation(int column)
+        {
+            return ((column - 1) % 26 == 0);
+        }
     }
 }
