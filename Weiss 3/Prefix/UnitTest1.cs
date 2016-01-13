@@ -24,11 +24,13 @@ namespace Prefix
          string WordsPrefix ( string firstWord, string secondWord)
         {
             string prefix = string.Empty;
-            int TheShortestWord = Math.Min(firstWord.Length, secondWord.Length);
-            for ( int i = 0; i < TheShortestWord; i++)
+            int shortestWordLenght = Math.Min(firstWord.Length, secondWord.Length);
+            for ( int i = 0; i < shortestWordLenght; i++)
             {
-                if (firstWord[i] == secondWord[i]) prefix += firstWord[i];
-                else break;
+                if (!(firstWord[i] == secondWord[i]))
+                    break;
+                    prefix += firstWord[i];
+                
             }
             return prefix;
         }
