@@ -27,12 +27,17 @@ namespace Prefix
             int shortestWordLenght = Math.Min(firstWord.Length, secondWord.Length);
             for ( int i = 0; i < shortestWordLenght; i++)
             {
-                if (!(firstWord[i] == secondWord[i]))
+                if (getTheComparison(firstWord, secondWord, i))
                     break;
                     prefix += firstWord[i];
                 
             }
             return prefix;
         }
+
+         private static bool getTheComparison(string firstWord, string secondWord, int i)
+         {
+             return !(firstWord[i] == secondWord[i]);
+         }
     }
 }
