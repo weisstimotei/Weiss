@@ -9,7 +9,7 @@ namespace Loto_6_of_49
         [TestMethod]
         public void TestForCategory1()
         {
-            Assert.AreEqual((7.151123842018516E-08), getProbability(1, 6, 49));
+            Assert.AreEqual((7.151E-08), getProbability(1, 6, 49), 1E-3);
         }
         double getProbability(float category, float howMuch, float of)
         {
