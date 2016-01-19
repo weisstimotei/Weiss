@@ -16,7 +16,11 @@ namespace Loto_6_of_49
         {
             Assert.AreEqual((5.244158E-07), getProbability(2, 6, 49),1E-5);
         }
-        
+        [TestMethod]
+        public void TestForCategory3()
+        {
+            Assert.AreEqual((4.719742E-06), getProbability(3, 6, 49), 1E-5);
+        }
         double getProbability(float category, float howMuch, float of)
         {
             return (getPermutations(howMuch) / getPermutations(howMuch-category+1) * getPermutations(category-1))*(getPermutations(49-howMuch) / getPermutations(category-1) * getPermutations(49-howMuch-category+1))/(getPermutations(of) / getPermutations(howMuch) * getPermutations(of - howMuch));
