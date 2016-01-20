@@ -28,8 +28,13 @@ namespace Loto_6_of_49
         }
         double getProbability(float category, float howMuch, float of)
         {
-            return (getPermutations(howMuch) / getPermutations(howMuch-category+1) * getPermutations(category-1))*(getPermutations(49-howMuch) / getPermutations(category-1) * getPermutations(49-howMuch-category+1))/(getPermutations(of) / getPermutations(howMuch) * getPermutations(of - howMuch));
+            return GetCombinations(category, howMuch, of);
 
+        }
+
+        private double GetCombinations(float category, float howMuch, float of)
+        {
+            return (getPermutations(howMuch) / getPermutations(howMuch - category + 1) * getPermutations(category - 1)) * (getPermutations(49 - howMuch) / getPermutations(category - 1) * getPermutations(49 - howMuch - category + 1)) / (getPermutations(of) / getPermutations(howMuch) * getPermutations(of - howMuch));
         }
         double getPermutations(float number)
         {
