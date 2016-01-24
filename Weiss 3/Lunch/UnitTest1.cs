@@ -13,7 +13,21 @@ namespace Lunch
         }
         int GetTheDayOfMeeting(int daysForHim, int daysForMe)
         {
-            return 12;
+            return GetCMMMC(ref daysForHim, ref daysForMe);
+        }
+
+        private static int GetCMMMC(ref int daysForHim, ref int daysForMe)
+        {
+            int product = daysForHim * daysForMe;
+            while (daysForHim != daysForMe)
+            {
+                if (daysForHim > daysForMe)
+                    daysForHim = daysForHim - daysForMe;
+                else
+                    daysForMe = daysForMe - daysForHim;
+            }
+
+            return product / daysForHim;
         }
     }
 }
