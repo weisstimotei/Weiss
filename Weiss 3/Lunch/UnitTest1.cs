@@ -9,11 +9,11 @@ namespace Lunch
         [TestMethod]
         public void TestForFirstDayOfMeeting()
         {
-            Assert.AreEqual(24,GetTheDayOfMeeting(4,6));
+            Assert.AreEqual(12,GetTheDayOfMeeting(4,6));
         }
         int GetTheDayOfMeeting(int daysForHim, int daysForMe)
         {
-            return 24;
+            return 12;
         }
     }
 }
