@@ -13,8 +13,17 @@ namespace Anagram
         }
         double GetTheNumberOfAnagram(string theWord)
         {
-            
-            return 6;
+            return  GetTheNumber(theWord);
+        }
+
+        private static int GetTheNumber(string theWord)
+        {
+            int theNumber = 1;
+            for (int i = 1; i <= theWord.Length; i++)
+            {
+                theNumber *= i;
+            }
+            return theNumber;
         }
     }
 }
