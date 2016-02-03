@@ -11,19 +11,53 @@ namespace Anagram
         {
             Assert.AreEqual(6,GetTheNumberOfAnagram("CAI"));
         }
-        double GetTheNumberOfAnagram(string theWord)
+        [TestMethod]
+        public void AnagramsWithRepeatedChars()
         {
-            return  GetTheNumber(theWord);
+            Assert.AreEqual(30, GetTheNumberOfAnagram("aaccd"));
+        }
+        int GetTheNumberOfAnagram(string theWord)
+        {
+            int result;
+            if (theWord.Length == 0)
+                return 0;
+            result = GetTheFactorial(theWord.Length) / CountOfRepeatedChars(theWord);
+            return result;
+           }
+
+        
+        int CountOfRepeatedChars(string inputstring)
+        {
+            int result = 0;
+            int p = 1;
+            for (char charToCheck = 'a'; charToCheck <= 'z'; charToCheck++)
+            {
+                result = CountOfChars(inputstring, charToCheck);
+                p *= GetTheFactorial(result);
+            }
+            return p;
         }
 
-        private static int GetTheNumber(string theWord)
+       private static int CountOfChars(string inputstring, char charToCheck)
         {
-            int theNumber = 1;
-            for (int i = 1; i <= theWord.Length; i++)
+            int result = 0;
+            for (int i = 0; i < inputstring.Length; i++)
             {
-                theNumber *= i;
+                if (inputstring[i] == charToCheck)
+                {
+                    result++;
+                }
             }
-            return theNumber;
+            return result;
         }
+       int GetTheFactorial(int length)
+       {
+           int theNumber = 1;
+           for (int i = 1; i <= length; i++)
+           {
+               theNumber *= i;
+           }
+           return theNumber;
+       }
     }
 }

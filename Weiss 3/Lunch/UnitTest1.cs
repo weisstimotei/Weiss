@@ -15,7 +15,7 @@ namespace Lunch
         {
             return GetCMMMC(ref daysForHim, ref daysForMe);
         }
-
+       
         private static int GetCMMMC(ref int daysForHim, ref int daysForMe)
         {
             int product = daysForHim * daysForMe;

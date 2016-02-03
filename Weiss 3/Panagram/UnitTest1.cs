@@ -11,12 +11,19 @@ namespace Panagram
         {
             Assert.AreEqual("NO", CheckForPanagram("Abcfdhfs"));
         }
+        [TestMethod]
+        public void CheckPanagramForAlphabet()
+        {
+            Assert.AreEqual("Yes", CheckForPanagram("the quick brown fox jumps over the lazy dog"));
+        }
+       
         string CheckForPanagram(string sentenceInserted)
         {
             string lowerCase = sentenceInserted.ToLower();
             if (CheckPanagram(lowerCase))
                 return "YES";
-            return "NO";
+            else 
+                return "NO";
         }
         bool CheckPanagram(string inputString)
         {
