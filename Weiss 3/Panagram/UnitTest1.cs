@@ -9,36 +9,35 @@ namespace Panagram
         [TestMethod]
         public void CheckPanagramForARandomString()
         {
-            Assert.AreEqual("NO", CheckForPanagram("Abcfdhfs"));
+            Assert.AreEqual(false, CheckForPanagram("Abcfdhfs"));
         }
         [TestMethod]
         public void CheckPanagramForAlphabet()
         {
-            Assert.AreEqual("Yes", CheckForPanagram("the quick brown fox jumps over the lazy dog"));
+            Assert.AreEqual(true, CheckForPanagram("The quick brown fox jumps over the lazy dog"));
         }
-       
-        string CheckForPanagram(string sentenceInserted)
-        {
-            string lowerCase = sentenceInserted.ToLower();
-            if (CheckPanagram(lowerCase))
-                return "YES";
-            else 
-                return "NO";
-        }
-        bool CheckPanagram(string inputString)
-        {
-            int i = 0;
-            string output = string.Empty;
-            for (int j = 0; j < inputString.Length; j++)
-            {
-                while ((char)('a' + i) != inputString[j] && i != 26)
-                {
-                    i++;
-                    return false;
 
+        bool CheckForPanagram(string thePhrase)
+        {
+            int[] numbers = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            char[] newString = thePhrase.ToCharArray();
+            for (int i = 0; i < thePhrase.Length; i++)
+            {
+                for (int j = 0; j < 26; j++)
+                {
+                    if (newString[i] == (char)('a' + j))
+                        numbers[j] = numbers[j] + 1;
                 }
             }
-            return true;
+            int counter = 0;
+            for (int i = 0; i < 26; i++)
+            {
+                if (numbers[i] == 0)
+                    counter++;
+            }
+            if (counter==0)
+                return true;
+            return false;
         }
     }
 }
