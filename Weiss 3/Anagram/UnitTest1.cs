@@ -16,12 +16,18 @@ namespace Anagram
         {
             Assert.AreEqual(30, GetTheNumberOfAnagram("aaccd"));
         }
+        [TestMethod]
+        public void TestFoConversionToLowercase()
+        {
+            Assert.AreEqual(3, GetTheNumberOfAnagram("Aab"));
+        }
         int GetTheNumberOfAnagram(string theWord)
         {
+            string lowerCase = theWord.ToLower();
             int result;
             if (theWord.Length == 0)
                 return 0;
-            result = GetTheFactorial(theWord.Length) / CountOfRepeatedChars(theWord);
+            result = GetTheFactorial(lowerCase.Length) / CountOfRepeatedChars(lowerCase);
             return result;
            }
 
