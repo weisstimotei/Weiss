@@ -14,30 +14,25 @@ namespace Panagram
         [TestMethod]
         public void CheckPanagramForAlphabet()
         {
-            Assert.AreEqual(true, CheckForPanagram("The quick brown fox jumps over the lazy dog"));
+            Assert.AreEqual(true, CheckForPanagram("abcdefghijklmnopqrstuvwxyz"));
         }
 
         bool CheckForPanagram(string thePhrase)
         {
-            int[] numbers = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            char[] newString = thePhrase.ToCharArray();
-            for (int i = 0; i < thePhrase.Length; i++)
+            int contor = 0;
+            string loverCase = thePhrase.ToLower();
+            char[] newString = loverCase.ToCharArray();
+            for (int j = (char)('a'); j < 'z'; j++)
             {
-                for (int j = 0; j < 26; j++)
+                for (int i = 0; i < loverCase.Length; i++)
                 {
-                    if (newString[i] == (char)('a' + j))
-                        numbers[j] = numbers[j] + 1;
+                    if (newString[i] == j)
+                        contor++;
                 }
             }
-            int counter = 0;
-            for (int i = 0; i < 26; i++)
-            {
-                if (numbers[i] == 0)
-                    counter++;
-            }
-            if (counter==0)
-                return true;
-            return false;
+                if(contor==25)
+                    return true;
+                return false;
         }
     }
 }
