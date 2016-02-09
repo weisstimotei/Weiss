@@ -16,23 +16,25 @@ namespace Panagram
         {
             Assert.AreEqual(true, CheckForPanagram("abcdefghijklmnopqrstuvwxyz"));
         }
+        [TestMethod]
+        public void CheckPanagramForAPanagram()
+        {
+            Assert.AreEqual(true, CheckForPanagram("The quick brown fox jumps over the lazy dog"));
+        }
 
         bool CheckForPanagram(string thePhrase)
         {
             int contor = 0;
             string loverCase = thePhrase.ToLower();
-            char[] newString = loverCase.ToCharArray();
-            for (int j = (char)('a'); j < 'z'; j++)
+            string[] pangramContents = new string[26] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+            for (int i = 0; i < pangramContents.Length; i++)
             {
-                for (int i = 0; i < loverCase.Length; i++)
+                if (!loverCase.Contains(pangramContents[i]))
                 {
-                    if (newString[i] == j)
-                        contor++;
+                    return false;
                 }
             }
-                if(contor==25)
-                    return true;
-                return false;
+            return true;
         }
     }
 }
