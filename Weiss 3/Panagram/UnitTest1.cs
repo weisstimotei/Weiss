@@ -25,11 +25,11 @@ namespace Panagram
         bool CheckForPanagram(string thePhrase)
         {
             int contor = 0;
-            string loverCase = thePhrase.ToLower();
+            string lowerCase = thePhrase.ToLower();
             string[] pangramContents = new string[26] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
             for (int i = 0; i < pangramContents.Length; i++)
             {
-                if (!loverCase.Contains(pangramContents[i]))
+                if (!lowerCase.Contains(pangramContents[i]))
                 {
                     return false;
                 }
