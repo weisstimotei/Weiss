@@ -24,17 +24,22 @@ namespace Panagram
 
         bool CheckForPanagram(string thePhrase)
         {
-            int contor = 0;
             string lowerCase = thePhrase.ToLower();
-            string[] pangramContents = new string[26] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-            for (int i = 0; i < pangramContents.Length; i++)
+            for (int i = 0; i < 26; i++)
             {
-                if (!lowerCase.Contains(pangramContents[i]))
+                if (!lowerCase.Contains(GetStringAlphabet(i)))
                 {
                     return false;
                 }
             }
             return true;
+        }
+        public static string GetStringAlphabet(int i)
+        {
+
+            string stringAlphabet = Convert.ToString((char)('a' + i));
+           
+            return stringAlphabet;
         }
     }
 }
