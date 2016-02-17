@@ -13,6 +13,13 @@ namespace Data_representation_in_memory
           byte [] actual=GetTheTransformationOnTheBasis2(49);
           CollectionAssert.AreEquivalent(expected, actual);
         }
+        [TestMethod]
+        public void TestForOperationNOT()
+        {
+            byte[] expected = {0,0,1,1,1,0};
+            byte[] actual = OperationNOT(GetTheTransformationOnTheBasis2(49));
+            CollectionAssert.AreEquivalent(expected, actual);
+        }
        byte[] GetTheTransformationOnTheBasis2(int number)
         {
             int size = (int)Math.Log(number, 2);
@@ -22,9 +29,19 @@ namespace Data_representation_in_memory
                 bytes [size]= (byte)(number % 2);
                 number = number / 2;
                 size--;
-
             }
             return  bytes;
         }
+       byte[] OperationNOT(byte[] number)
+       {
+           for (int i = 0; i < number.Length; i++)
+           {
+               if (number[i]==1)
+                   number[i] = 0;
+               else
+                   number[i] = 1;
+           }
+           return number;
+       }
     }
 }
