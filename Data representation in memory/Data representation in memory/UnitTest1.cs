@@ -20,6 +20,15 @@ namespace Data_representation_in_memory
             byte[] actual = OperationNOT(GetTheTransformationOnTheBasis2(49));
             CollectionAssert.AreEquivalent(expected, actual);
         }
+        [TestMethod]
+        public void TestForOperationAND()
+        {
+            byte[] value1 ={0,1,1,0};
+            byte[] value2 = {1,0,1,1,1,0,1};
+            byte[] actual = OperationAND(value1, value2);
+            byte[] expected = {0,0,0,0,1,0,0};
+            CollectionAssert.AreEquivalent(expected, actual);
+        }
        byte[] GetTheTransformationOnTheBasis2(int number)
         {
             int size = (int)Math.Log(number, 2);
@@ -32,8 +41,8 @@ namespace Data_representation_in_memory
             }
             return  bytes;
         }
-       byte[] OperationNOT(byte[] number)
-       {
+        byte[] OperationNOT(byte[] number)
+        {
            for (int i = 0; i < number.Length; i++)
            {
                if (number[i]==1)
@@ -42,6 +51,20 @@ namespace Data_representation_in_memory
                    number[i] = 1;
            }
            return number;
-       }
+        }
+        byte[] OperationAND(byte[] number1, byte[] number2)
+        {
+           byte[] result = new byte[Math.Max(number1.Length,number2.Length)];
+            for (int i = result.Length-1; i >=0; i--)
+                result[i] = (byte)(GetByte(number1,i) * GetByte(number2,i));
+            return result;
+        }
+        byte GetByte(byte[] a, int poz)
+        {
+            if(poz<a.Length)
+                return a[a.Length-poz-1];
+            return 0;
+        }
+       
     }
 }
