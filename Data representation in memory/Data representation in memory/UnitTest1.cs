@@ -23,10 +23,19 @@ namespace Data_representation_in_memory
         [TestMethod]
         public void TestForOperationAND()
         {
-            byte[] value1 ={0,1,1,0};
-            byte[] value2 = {1,0,1,1,1,0,1};
-            byte[] actual = OperationAND(value1, value2);
-            byte[] expected = {0,0,0,0,1,0,0};
+            byte[] a = GetTheTransformationOnTheBasis2(6);
+            byte[] b = GetTheTransformationOnTheBasis2(93);
+            byte[] expected = OperationAND(a, b);
+            byte[] actual = {0,0,0,0,1,0,0};
+            CollectionAssert.AreEquivalent(expected, actual);
+        }
+        [TestMethod]
+        public void TestForOperationOR()
+        {
+            byte[] a = { 1, 0, 0 };
+            byte[] b = { 0,1, 0, 0,1 };
+            byte[] expected = OperationOR(a, b);
+            byte[] actual = { 0,1, 1, 0, 1};
             CollectionAssert.AreEquivalent(expected, actual);
         }
        byte[] GetTheTransformationOnTheBasis2(int number)
@@ -52,11 +61,11 @@ namespace Data_representation_in_memory
            }
            return number;
         }
-        byte[] OperationAND(byte[] number1, byte[] number2)
+        byte[] OperationAND(byte[] first, byte[] second)
         {
-           byte[] result = new byte[Math.Max(number1.Length,number2.Length)];
+            byte[] result = new byte[Math.Max(first.Length, second.Length)];
             for (int i = result.Length-1; i >=0; i--)
-                result[i] = (byte)(GetByte(number1,i) * GetByte(number2,i));
+                result[i] = (byte)(GetByte(first, i) * GetByte(second, i));
             return result;
         }
         byte GetByte(byte[] a, int poz)
@@ -65,6 +74,17 @@ namespace Data_representation_in_memory
                 return a[a.Length-poz-1];
             return 0;
         }
-       
+        byte[] OperationOR(byte[] first, byte[] second)
+        {
+            byte[] result = new byte[Math.Max(first.Length, second.Length)];
+            for (int i = result.Length - 1; i >= 0; i--)
+            {
+                if (GetByte(first, i) ==1 || GetByte(second, i)==1)
+                    result[i] = (byte)(1);
+                else
+                    result[i] = (byte)(0);
+            }
+            return result;
+        }
     }
 }
