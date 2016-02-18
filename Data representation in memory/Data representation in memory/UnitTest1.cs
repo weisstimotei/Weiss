@@ -38,6 +38,15 @@ namespace Data_representation_in_memory
             byte[] actual = { 0,1, 1, 0, 1};
             CollectionAssert.AreEquivalent(expected, actual);
         }
+        [TestMethod]
+        public void TestForOperationXOR()
+        {
+            byte[] a = {0,0, 1, 0, 0 };
+            byte[] b = { 1, 0, 0, 1 };
+            byte[] expected = OperationXOR(a, b);
+            byte[] actual = { 0,1, 1, 0, 1 };
+            CollectionAssert.AreEquivalent(expected, actual);
+        }
        byte[] GetTheTransformationOnTheBasis2(int number)
         {
             int size = (int)Math.Log(number, 2);
@@ -80,6 +89,18 @@ namespace Data_representation_in_memory
             for (int i = result.Length - 1; i >= 0; i--)
             {
                 if (GetByte(first, i) ==1 || GetByte(second, i)==1)
+                    result[i] = (byte)(1);
+                else
+                    result[i] = (byte)(0);
+            }
+            return result;
+        }
+        byte[] OperationXOR(byte[] first, byte[] second)
+        {
+            byte[] result = new byte[Math.Max(first.Length, second.Length)];
+            for (int i = result.Length - 1; i >= 0; i--)
+            {
+                if (GetByte(first, i) != GetByte(second, i))
                     result[i] = (byte)(1);
                 else
                     result[i] = (byte)(0);
