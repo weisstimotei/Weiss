@@ -32,19 +32,19 @@ namespace Data_representation_in_memory
         [TestMethod]
         public void TestForOperationOR()
         {
-            byte[] a = { 1, 0, 0 };
-            byte[] b = { 0,1, 0, 0,1 };
+            byte[] a = GetTheTransformationOnTheBasis2(4);
+            byte[] b = GetTheTransformationOnTheBasis2(9);
             byte[] expected = OperationOR(a, b);
-            byte[] actual = { 0,1, 1, 0, 1};
+            byte[] actual = GetTheTransformationOnTheBasis2(4 | 9);
             CollectionAssert.AreEquivalent(expected, actual);
         }
         [TestMethod]
         public void TestForOperationXOR()
         {
-            byte[] a = {0,0, 1, 0, 0 };
-            byte[] b = { 1, 0, 0, 1 };
+            byte[] a = GetTheTransformationOnTheBasis2(4);
+            byte[] b = GetTheTransformationOnTheBasis2(9);
             byte[] expected = OperationXOR(a, b);
-            byte[] actual = { 0,1, 1, 0, 1 };
+            byte[] actual = GetTheTransformationOnTheBasis2(4 ^ 9);
             CollectionAssert.AreEquivalent(expected, actual);
         }
        byte[] GetTheTransformationOnTheBasis2(int number)
