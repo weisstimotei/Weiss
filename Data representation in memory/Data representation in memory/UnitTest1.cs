@@ -21,12 +21,12 @@ namespace Data_representation_in_memory
             CollectionAssert.AreEquivalent(expected, actual);
         }
         [TestMethod]
-        public void TestForOperationAND()
+       public void TestForOperationAND()
         {
             byte[] a = GetTheTransformationOnTheBasis2(6);
             byte[] b = GetTheTransformationOnTheBasis2(93);
-            byte[] expected = OperationAND(a, b);
-            byte[] actual = {0,0,0,0,1,0,0};
+            byte[] actual = OperationAND(a, b);
+            byte[] expected = GetTheTransformationOnTheBasis2(6 & 93);
             CollectionAssert.AreEquivalent(expected, actual);
         }
         [TestMethod]
@@ -72,7 +72,7 @@ namespace Data_representation_in_memory
         }
         byte[] OperationAND(byte[] first, byte[] second)
         {
-            byte[] result = new byte[Math.Max(first.Length, second.Length)];
+            byte[] result = new byte[Math.Min(first.Length, second.Length)];
             for (int i = result.Length-1; i >=0; i--)
                 result[i] = (byte)(GetByte(first, i) * GetByte(second, i));
             return result;
@@ -107,5 +107,6 @@ namespace Data_representation_in_memory
             }
             return result;
         }
+
     }
 }
