@@ -97,11 +97,17 @@ namespace Data_representation_in_memory
         byte[] OperationAND(byte[] first, byte[] second)
         {
             byte[] result = new byte[Math.Min(first.Length, second.Length)];
+            byte[] res = new byte[Math.Min(first.Length, second.Length)];
             for (int i = 0; i <= result.Length - 1; i++)
             {
                 result[i] = (byte)(GetByte(first, i) * GetByte(second, i));
             }
-            byte[] res = new byte[Math.Min(first.Length, second.Length)];
+
+            return GetMirroringNumber(result, res);
+        }
+
+        private static byte[] GetMirroringNumber(byte[] result, byte[] res)
+        {
             for (int j = 0; j <= result.Length - 1; j++)
             {
                 res[j] = result[result.Length - j - 1];
@@ -117,6 +123,7 @@ namespace Data_representation_in_memory
         byte[] OperationOR(byte[] first, byte[] second)
         {
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
+            byte[] res = new byte[Math.Max(first.Length, second.Length)];
             for (int i = result.Length - 1; i >= 0; i--)
             {
                 if (GetByte(first, i) ==1 || GetByte(second, i)==1)
@@ -124,16 +131,12 @@ namespace Data_representation_in_memory
                 else
                     result[i] = (byte)(0);
             }
-            byte[] res = new byte[Math.Max(first.Length, second.Length)];
-            for (int j = 0; j <= result.Length -1;j++ )
-            {
-                res[j]=result[result.Length-j-1];
-            }
-            return res;
+            return GetMirroringNumber(result, res);
         }
         byte[] OperationXOR(byte[] first, byte[] second)
         {
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
+            byte[] res = new byte[Math.Max(first.Length, second.Length)];
             for (int i = result.Length - 1; i >= 0; i--)
             {
                 if (GetByte(first, i) != GetByte(second, i))
@@ -141,12 +144,7 @@ namespace Data_representation_in_memory
                 else
                     result[i] = (byte)(0);
             }
-            byte[] res = new byte[Math.Max(first.Length, second.Length)];
-            for (int j = 0; j <= result.Length - 1; j++)
-            {
-                res[j] = result[result.Length - j - 1];
-            }
-            return res;
+            return GetMirroringNumber(result, res);
         }
         byte[] OperationRightHandShift(byte[] a, int position)
         {
