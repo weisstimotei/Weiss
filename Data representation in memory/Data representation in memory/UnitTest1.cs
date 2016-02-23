@@ -11,14 +11,14 @@ namespace Data_representation_in_memory
         {
           byte[] expected = { 1, 1,0,0,0,1};
           byte [] actual=GetTheTransformationOnTheBasis2(49);
-          CollectionAssert.AreEquivalent(expected, actual);
+          CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationNOT()
         {
             byte[] expected = {0,0,1,1,1,0};
             byte[] actual = OperationNOT(GetTheTransformationOnTheBasis2(49));
-            CollectionAssert.AreEquivalent(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
        public void TestForOperationAND()
@@ -27,7 +27,7 @@ namespace Data_representation_in_memory
             byte[] b = GetTheTransformationOnTheBasis2(93);
             byte[] actual = OperationAND(a, b);
             byte[] expected = GetTheTransformationOnTheBasis2(6 & 93);
-            CollectionAssert.AreEquivalent(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationOR()
@@ -36,7 +36,7 @@ namespace Data_representation_in_memory
             byte[] b = GetTheTransformationOnTheBasis2(9);
             byte[] expected = OperationOR(a, b);
             byte[] actual = GetTheTransformationOnTheBasis2(4 | 9);
-            CollectionAssert.AreEquivalent(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationXOR()
@@ -45,7 +45,7 @@ namespace Data_representation_in_memory
             byte[] b = GetTheTransformationOnTheBasis2(9);
             byte[] expected = OperationXOR(a, b);
             byte[] actual = GetTheTransformationOnTheBasis2(4 ^ 9);
-            CollectionAssert.AreEquivalent(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationRightHandShift()
@@ -97,9 +97,16 @@ namespace Data_representation_in_memory
         byte[] OperationAND(byte[] first, byte[] second)
         {
             byte[] result = new byte[Math.Min(first.Length, second.Length)];
-            for (int i = result.Length-1; i >=0; i--)
+            for (int i = 0; i <= result.Length - 1; i++)
+            {
                 result[i] = (byte)(GetByte(first, i) * GetByte(second, i));
-            return result;
+            }
+            byte[] res = new byte[Math.Min(first.Length, second.Length)];
+            for (int j = 0; j <= result.Length - 1; j++)
+            {
+                res[j] = result[result.Length - j - 1];
+            }
+            return res;
         }
         byte GetByte(byte[] a, int poz)
         {
@@ -117,7 +124,12 @@ namespace Data_representation_in_memory
                 else
                     result[i] = (byte)(0);
             }
-            return result;
+            byte[] res = new byte[Math.Max(first.Length, second.Length)];
+            for (int j = 0; j <= result.Length -1;j++ )
+            {
+                res[j]=result[result.Length-j-1];
+            }
+            return res;
         }
         byte[] OperationXOR(byte[] first, byte[] second)
         {
@@ -129,7 +141,12 @@ namespace Data_representation_in_memory
                 else
                     result[i] = (byte)(0);
             }
-            return result;
+            byte[] res = new byte[Math.Max(first.Length, second.Length)];
+            for (int j = 0; j <= result.Length - 1; j++)
+            {
+                res[j] = result[result.Length - j - 1];
+            }
+            return res;
         }
         byte[] OperationRightHandShift(byte[] a, int position)
         {
