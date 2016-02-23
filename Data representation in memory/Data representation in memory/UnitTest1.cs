@@ -55,6 +55,14 @@ namespace Data_representation_in_memory
             byte[] expected = GetTheTransformationOnTheBasis2(6 >> 1);
             CollectionAssert.AreEqual(expected, actual); 
         }
+        [TestMethod]
+        public void TestForOperationRightHandShift2()
+        {
+            byte[] a = GetTheTransformationOnTheBasis2(93);
+            byte[] actual = OperationRightHandShift(a, 2);
+            byte[] expected = GetTheTransformationOnTheBasis2(93 >> 2);
+            CollectionAssert.AreEqual(expected, actual);
+        }
        byte[] GetTheTransformationOnTheBasis2(int number)
         {
             int size = (int)Math.Log(number, 2);
