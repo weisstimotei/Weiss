@@ -63,6 +63,14 @@ namespace Data_representation_in_memory
             byte[] expected = GetTheTransformationOnTheBasis2(93 >> 2);
             CollectionAssert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void TestForOperationLeftHandShift()
+        {
+            byte[] a = GetTheTransformationOnTheBasis2(93);
+            byte[] actual = OperationLeftHandShift(a, 1);
+            byte[] expected = GetTheTransformationOnTheBasis2(93 << 1);
+            CollectionAssert.AreEqual(expected, actual);
+        }
        byte[] GetTheTransformationOnTheBasis2(int number)
         {
             int size = (int)Math.Log(number, 2);
@@ -126,6 +134,11 @@ namespace Data_representation_in_memory
         byte[] OperationRightHandShift(byte[] a, int position)
         {
             Array.Resize(ref a, a.Length - position);
+            return a;
+        }
+        byte[] OperationLeftHandShift(byte[] a, int position)
+        {
+            Array.Resize(ref a, a.Length + position);
             return a;
         }
 
