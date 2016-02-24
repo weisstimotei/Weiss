@@ -9,7 +9,7 @@ namespace Data_representation_in_memory
         [TestMethod]
         public void TestConvertToBase2()
         {
-          byte[] expected = { 1, 1,0,0,0,1};
+            byte[] expected = { 1, 1,0,0,0,1};
           byte [] actual=GetTheTransformationOnTheBasis2(49);
           CollectionAssert.AreEqual(expected, actual);
         }
@@ -23,10 +23,10 @@ namespace Data_representation_in_memory
         [TestMethod]
        public void TestForOperationAND()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(6);
-            byte[] b = GetTheTransformationOnTheBasis2(93);
+            byte[] a = GetTheTransformationOnTheBasis2(96);
+            byte[] b = GetTheTransformationOnTheBasis2(3);
             byte[] actual = OperationAND(a, b);
-            byte[] expected = GetTheTransformationOnTheBasis2(6 & 93);
+            byte[] expected = GetTheTransformationOnTheBasis2(3 & 96);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
@@ -73,15 +73,17 @@ namespace Data_representation_in_memory
         }
        byte[] GetTheTransformationOnTheBasis2(int number)
         {
-            int size = (int)Math.Log(number, 2);
-            byte[] bytes= new byte[size+1];
-            while (number >= 1)
+            byte[] bits = new byte[1];
+            int i = 1;
+            while (number != 0)
             {
-                bytes [size]= (byte)(number % 2);
+                Array.Resize(ref bits, i);
+                bits[i - 1] = (byte)(number % 2);
+                i++;
                 number = number / 2;
-                size--;
             }
-            return  bytes;
+            return GetMirroringNumber(bits);
+            
         }
         byte[] OperationNOT(byte[] number)
         {
@@ -96,19 +98,55 @@ namespace Data_representation_in_memory
         }
         byte[] OperationAND(byte[] first, byte[] second)
         {
-            byte[] result = new byte[Math.Min(first.Length, second.Length)];
-            byte[] res = new byte[Math.Min(first.Length, second.Length)];
-            for (int i = 0; i <= result.Length - 1; i++)
+           
+            byte[] result = new byte[Math.Max(first.Length, second.Length)];
+            for (int i = 0; i < result.Length ; i++)
             {
-                result[i] = (byte)(GetByte(first, i) * GetByte(second, i));
+                if (GetByte(first, i) == 1 && GetByte(second, i) == 1)
+                    result[i] = (byte)1;
+                else
+                    result[i] = (byte)0;
             }
-
-            return GetMirroringNumber(result, res);
+           
+           return TakeTheZero(GetMirroringNumber(result));
         }
+        byte[] TakeTheZero(byte[] a)
+       {
+           int k = 0;
+           int position=0;
+           for (int i = 0; i < a.Length; i++)
+           {
+               if (a[i] == (byte)0)
+                   k++;
+               else
+               {
+                   break;
+               }
+           }
+           byte[] result = new byte[a.Length - k];
+            byte[] zero = new byte[1];
+           for (int j = k+1; j <= a.Length; j++)
+           {
+               if(k==0)
+                  result[position]=a[j-1];
+               if (k == a.Length)
+                   return zero;
 
-        private static byte[] GetMirroringNumber(byte[] result, byte[] res)
+               else
+                   result[position] = a[j - 1];
+
+
+               position++;
+
+
+           }
+            return result;
+        }
+       
+        private static byte[] GetMirroringNumber(byte[] result)
         {
-            for (int j = 0; j <= result.Length - 1; j++)
+            byte[] res = new byte[result.Length];
+            for (int j = 0; j < result.Length ; j++)
             {
                 res[j] = result[result.Length - j - 1];
             }
@@ -122,29 +160,29 @@ namespace Data_representation_in_memory
         }
         byte[] OperationOR(byte[] first, byte[] second)
         {
+            
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
-            byte[] res = new byte[Math.Max(first.Length, second.Length)];
-            for (int i = result.Length - 1; i >= 0; i--)
+            for (int i = 0; i < result.Length; i++)
             {
                 if (GetByte(first, i) ==1 || GetByte(second, i)==1)
                     result[i] = (byte)(1);
                 else
                     result[i] = (byte)(0);
             }
-            return GetMirroringNumber(result, res);
+            return GetMirroringNumber(result);
         }
         byte[] OperationXOR(byte[] first, byte[] second)
         {
+           
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
-            byte[] res = new byte[Math.Max(first.Length, second.Length)];
-            for (int i = result.Length - 1; i >= 0; i--)
+            for (int i = 0; i < result.Length; i++)
             {
                 if (GetByte(first, i) != GetByte(second, i))
                     result[i] = (byte)(1);
                 else
                     result[i] = (byte)(0);
             }
-            return GetMirroringNumber(result, res);
+            return GetMirroringNumber(result);
         }
         byte[] OperationRightHandShift(byte[] a, int position)
         {
