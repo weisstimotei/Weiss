@@ -36,6 +36,14 @@ namespace Data_representation_in_memory
             byte[] expected = GetTheTransformationOnTheBasis2(3 & 96);
             CollectionAssert.AreEqual(expected, actual);
         }
+        public void TestForOperationAND2()
+        {
+            byte[] a = GetTheTransformationOnTheBasis2(9);
+            byte[] b = GetTheTransformationOnTheBasis2(3);
+            byte[] actual = OperationAND(a, b);
+            byte[] expected = GetTheTransformationOnTheBasis2(3 & 9);
+            CollectionAssert.AreEqual(expected, actual);
+        }
         [TestMethod]
         public void TestForOperationOR()
         {
@@ -113,12 +121,14 @@ namespace Data_representation_in_memory
                 if (GetByte(first, i) == 1 && GetByte(second, i) == 1)
                     result[i] = (byte)1;
                 else
+                {
                     result[i] = (byte)0;
                     k++;
+                }
             }
             if (k == Math.Max(first.Length, second.Length))
                 return zero;
-            else
+           else
                 return TakeTheZero(GetMirroringNumber(result));
         }
         byte[] TakeTheZero(byte[] a)
