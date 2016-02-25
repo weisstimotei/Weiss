@@ -14,6 +14,13 @@ namespace Data_representation_in_memory
           CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
+        public void TestConvertToBase2ForZero()
+        {
+            byte[] expected = { 0 };
+            byte[] actual = GetTheTransformationOnTheBasis2(0);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+        [TestMethod]
         public void TestForOperationNOT()
         {
             byte[] expected = {0,0,1,1,1,0};
@@ -98,7 +105,8 @@ namespace Data_representation_in_memory
         }
         byte[] OperationAND(byte[] first, byte[] second)
         {
-           
+            int k = 0;
+            byte[] zero = new byte[1];
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
             for (int i = 0; i < result.Length ; i++)
             {
@@ -106,9 +114,12 @@ namespace Data_representation_in_memory
                     result[i] = (byte)1;
                 else
                     result[i] = (byte)0;
+                    k++;
             }
-           
-           return TakeTheZero(GetMirroringNumber(result));
+            if (k == Math.Max(first.Length, second.Length))
+                return zero;
+            else
+                return TakeTheZero(GetMirroringNumber(result));
         }
         byte[] TakeTheZero(byte[] a)
        {
@@ -124,21 +135,10 @@ namespace Data_representation_in_memory
                }
            }
            byte[] result = new byte[a.Length - k];
-            byte[] zero = new byte[1];
            for (int j = k+1; j <= a.Length; j++)
            {
-               if(k==0)
-                  result[position]=a[j-1];
-               if (k == a.Length)
-                   return zero;
-
-               else
-                   result[position] = a[j - 1];
-
-
+               result[position] = a[j - 1];
                position++;
-
-
            }
             return result;
         }
