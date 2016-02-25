@@ -93,10 +93,18 @@ namespace Data_representation_in_memory
             byte[] theBigger = GetTheTransformationOnTheBasis2(9);
             Assert.AreEqual(true, OperationLessThan(theLess, theBigger));
         }
+        [TestMethod]
         public void TestForOperationLessThan2()
         {
             byte[] theLess = GetTheTransformationOnTheBasis2(0);
             byte[] theBigger = GetTheTransformationOnTheBasis2(0);
+            Assert.AreEqual(false, OperationLessThan(theLess, theBigger));
+        }
+        [TestMethod]
+        public void TestForOperationLessThan3()
+        {
+            byte[] theLess = GetTheTransformationOnTheBasis2(14);
+            byte[] theBigger = GetTheTransformationOnTheBasis2(9);
             Assert.AreEqual(false, OperationLessThan(theLess, theBigger));
         }
         byte[] GetTheTransformationOnTheBasis2(int number)
@@ -220,12 +228,15 @@ namespace Data_representation_in_memory
             while (i >= 0)
             {
                 if (GetByte(theLess, i) == GetByte(theBigger, i))
-                    i--;
-                if (GetByte(theLess, i) > GetByte(theBigger, i))
-                    return false;
-                return true;
+                i--;
+                else 
+                    if (GetByte(theLess, i) > GetByte(theBigger, i))
+                        return false;
+                    else
+                        return true;
             }
             return false;
+
 
         }
     }
