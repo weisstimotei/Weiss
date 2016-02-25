@@ -93,6 +93,12 @@ namespace Data_representation_in_memory
             byte[] theBigger = GetTheTransformationOnTheBasis2(9);
             Assert.AreEqual(true, OperationLessThan(theLess, theBigger));
         }
+        public void TestForOperationLessThan2()
+        {
+            byte[] theLess = GetTheTransformationOnTheBasis2(0);
+            byte[] theBigger = GetTheTransformationOnTheBasis2(0);
+            Assert.AreEqual(false, OperationLessThan(theLess, theBigger));
+        }
         byte[] GetTheTransformationOnTheBasis2(int number)
         {
             byte[] bits = new byte[1];
