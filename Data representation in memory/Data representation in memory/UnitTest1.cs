@@ -129,20 +129,15 @@ namespace Data_representation_in_memory
             if (k == Math.Max(first.Length, second.Length))
                 return zero;
            else
-                return TakeTheZero(GetMirroringNumber(result));
+                return RemoveLeadingZeros(GetMirroringNumber(result));
         }
-        byte[] TakeTheZero(byte[] a)
+        byte[] RemoveLeadingZeros(byte[] a)
        {
            int k = 0;
            int position=0;
-           for (int i = 0; i < a.Length; i++)
+           for (int i = 0; i < a.Length && a[i] == 0; i++)
            {
-               if (a[i] == (byte)0)
-                   k++;
-               else
-               {
-                   break;
-               }
+               k++;
            }
            byte[] result = new byte[a.Length - k];
            for (int j = k+1; j <= a.Length; j++)
