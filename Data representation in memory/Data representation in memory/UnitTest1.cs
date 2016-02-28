@@ -134,23 +134,7 @@ namespace Data_representation_in_memory
         }
         byte[] OperationAND(byte[] first, byte[] second)
         {
-            int k = 0;
-            byte[] zero = new byte[1];
-            byte[] result = new byte[Math.Max(first.Length, second.Length)];
-            for (int i = 0; i < result.Length; i++)
-            {
-                if (GetByte(first, i) == 1 && GetByte(second, i) == 1)
-                    result[i] = (byte)1;
-                else
-                {
-                    result[i] = (byte)0;
-                    k++;
-                }
-            }
-            if (k == Math.Max(first.Length, second.Length))
-                return zero;
-            else
-                return RemoveLeadingZeros(GetMirroringNumber(result));
+            return ExecuteLogicOperation(first, second, "AND");
         }
         byte[] RemoveLeadingZeros(byte[] a)
         {
@@ -171,11 +155,17 @@ namespace Data_representation_in_memory
 
         private static byte[] GetMirroringNumber(byte[] result)
         {
+            int k=0;
+            byte[] zero = new byte[1];
             byte[] res = new byte[result.Length];
             for (int j = 0; j < result.Length; j++)
             {
                 res[j] = result[result.Length - j - 1];
+                if (res[j] == 0)
+                  k++;
             }
+            if (k == result.Length)
+                return zero;
             return res;
         }
         byte GetByte(byte[] a, int poz)
@@ -186,29 +176,11 @@ namespace Data_representation_in_memory
         }
         byte[] OperationOR(byte[] first, byte[] second)
         {
-
-            byte[] result = new byte[Math.Max(first.Length, second.Length)];
-            for (int i = 0; i < result.Length; i++)
-            {
-                if (GetByte(first, i) == 1 || GetByte(second, i) == 1)
-                    result[i] = (byte)(1);
-                else
-                    result[i] = (byte)(0);
-            }
-            return GetMirroringNumber(result);
+            return ExecuteLogicOperation(first, second, "OR");
         }
         byte[] OperationXOR(byte[] first, byte[] second)
         {
-
-            byte[] result = new byte[Math.Max(first.Length, second.Length)];
-            for (int i = 0; i < result.Length; i++)
-            {
-                if (GetByte(first, i) != GetByte(second, i))
-                    result[i] = (byte)(1);
-                else
-                    result[i] = (byte)(0);
-            }
-            return GetMirroringNumber(result);
+            return ExecuteLogicOperation(first, second, "XOR");
         }
         byte[] OperationRightHandShift(byte[] a, int position)
         {
@@ -228,17 +200,35 @@ namespace Data_representation_in_memory
             while (i >= 0)
             {
                 if (GetByte(theLess, i) == GetByte(theBigger, i))
-                i--;
-                else 
+                    i--;
+                else
                     if (GetByte(theLess, i) > GetByte(theBigger, i))
                         return false;
                     else
                         return true;
             }
             return false;
-
-
         }
+         byte[] ExecuteLogicOperation(byte[] first, byte[] second, string operation)
+        {
+            byte[] result = new byte[Math.Max(first.Length, second.Length)];
+            for (int i = 0; i < result.Length; i++)
+            {
+                switch (operation)
+                {
+                    case "AND":
+                        result[i] = (GetByte(first, i) == 1 && GetByte(second, i) == 1) ? (byte)1 : (byte)0;
+                        break; 
+                    case "OR":
+                        result[i] = (GetByte(first, i) == 1 || GetByte(second, i) == 1) ?  (byte)(1) : (byte)(0);
+                        break;
+                    case "XOR":
+                        result[i] = (GetByte(first, i) != GetByte(second, i)) ? (byte)(1) : (byte)(0);
+                        break;
+                }           
+            }
+             return GetMirroringNumber(result);
+         }
     }
 }
 
