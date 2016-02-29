@@ -107,6 +107,15 @@ namespace Data_representation_in_memory
             byte[] theBigger = GetTheTransformationOnTheBasis2(9);
             Assert.AreEqual(false, OperationLessThan(theLess, theBigger));
         }
+        [TestMethod]
+        public void TestForOperationAddition()
+        {
+            byte[] a = GetTheTransformationOnTheBasis2(70);
+            byte[] b = GetTheTransformationOnTheBasis2(2);
+            byte[] expected = GetTheTransformationOnTheBasis2(72);
+            byte[] actual= Addition(a,b);
+            CollectionAssert.AreEqual(expected, actual);
+        }
         byte[] GetTheTransformationOnTheBasis2(int number)
         {
             byte[] bits = new byte[1];
@@ -233,6 +242,35 @@ namespace Data_representation_in_memory
                      result[i] = (GetByte(first, i) != GetByte(second, i)) ? (byte)(1) : (byte)(0);
                      break;
              }
+         }
+         byte[] Addition(byte[] first, byte [] second)
+         {
+             byte[] zero = new byte[1];
+             byte[] result = new byte[Math.Max(first.Length, second.Length)+1];
+             int remainder = 0;
+             for (int i = 0; i < result.Length; i++)
+             {
+                 int sum = GetByte(first, i) + GetByte(second, i) + remainder;
+                 result[i] = (byte)(sum % 2);
+                 remainder = sum / 2;
+             }
+             if (first[0] == 0 && second[0] == 0)
+                 return zero;
+             return FormatResult(GetMirroringNumber(result));
+         }
+         byte[] FormatResult(byte[] result)
+         {
+             int position = 0;
+             for (int j = 0; j < result.Length; j++)
+             {
+                 if (result[j] == 0)
+                     position++;
+                 else break;
+             }
+             byte[] formatedResult = new byte[result.Length - position];
+             for (int j = 0; j < formatedResult.Length; j++)
+                 formatedResult[j] = result[j + position];
+             return formatedResult;
          }
     }
 }
