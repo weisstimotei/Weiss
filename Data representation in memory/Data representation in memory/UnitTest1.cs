@@ -199,13 +199,13 @@ namespace Data_representation_in_memory
                 return true;
             while (i >= 0)
             {
-                if (GetByte(theLess, i) == GetByte(theBigger, i))
-                    i--;
-                else
+                if (GetByte(theLess, i) != GetByte(theBigger, i))
+                {
                     if (GetByte(theLess, i) > GetByte(theBigger, i))
                         return false;
-                    else
-                        return true;
+                    return true;
+                }
+                i++;
             }
             return false;
         }
