@@ -94,7 +94,7 @@ namespace Data_representation_in_memory
             Assert.AreEqual(true, OperationLessThan(theLess, theBigger));
         }
         [TestMethod]
-        public void TestForOperationLessThan2()
+       public void TestForOperationLessThan2()
         {
             byte[] theLess = GetTheTransformationOnTheBasis2(0);
             byte[] theBigger = GetTheTransformationOnTheBasis2(0);
@@ -214,20 +214,25 @@ namespace Data_representation_in_memory
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
             for (int i = 0; i < result.Length; i++)
             {
-                switch (operation)
-                {
-                    case "AND":
-                        result[i] = (GetByte(first, i) == 1 && GetByte(second, i) == 1) ? (byte)1 : (byte)0;
-                        break; 
-                    case "OR":
-                        result[i] = (GetByte(first, i) == 1 || GetByte(second, i) == 1) ?  (byte)(1) : (byte)(0);
-                        break;
-                    case "XOR":
-                        result[i] = (GetByte(first, i) != GetByte(second, i)) ? (byte)(1) : (byte)(0);
-                        break;
-                }           
+                GettingCases(first, second, operation, result, i);
             }
              return GetMirroringNumber(result);
+         }
+
+         private void GettingCases(byte[] first, byte[] second, string operation, byte[] result, int i)
+         {
+             switch (operation)
+             {
+                 case "AND":
+                     result[i] = (GetByte(first, i) == 1 && GetByte(second, i) == 1) ? (byte)1 : (byte)0;
+                     break;
+                 case "OR":
+                     result[i] = (GetByte(first, i) == 1 || GetByte(second, i) == 1) ? (byte)(1) : (byte)(0);
+                     break;
+                 case "XOR":
+                     result[i] = (GetByte(first, i) != GetByte(second, i)) ? (byte)(1) : (byte)(0);
+                     break;
+             }
          }
     }
 }
