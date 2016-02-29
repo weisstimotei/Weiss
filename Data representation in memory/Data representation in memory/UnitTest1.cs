@@ -116,6 +116,15 @@ namespace Data_representation_in_memory
             byte[] actual= Addition(a,b);
             CollectionAssert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void TestForOperationAddition2()
+        {
+            byte[] a = GetTheTransformationOnTheBasis2(0);
+            byte[] b = GetTheTransformationOnTheBasis2(0);
+            byte[] expected = GetTheTransformationOnTheBasis2(0);
+            byte[] actual = Addition(a, b);
+            CollectionAssert.AreEqual(expected, actual);
+        }
         byte[] GetTheTransformationOnTheBasis2(int number)
         {
             byte[] bits = new byte[1];
