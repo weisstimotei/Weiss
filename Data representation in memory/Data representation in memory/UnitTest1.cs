@@ -298,21 +298,25 @@ namespace Data_representation_in_memory
              for (int i = 0; i < result.Length; i++)
              {
                 var diff = GetByte(first, i) - GetByte(second, i) - carry;
-                 if (diff < 0)
-                 {
-                     diff += 2;
-                     carry = 1;
-                 }
-                 else
-                 {
-                     carry = 0;
-                 }
-
+                GetTheIfForSubtraction(ref carry, ref diff);
                  result[i] = (byte)diff;
              }
              if (first[0] == 0 && second[0] == 0)
                  return zero;
              return FormatResult(GetMirroringNumber(result));
+         }
+
+         private static void GetTheIfForSubtraction(ref int carry, ref int diff)
+         {
+             if (diff < 0)
+             {
+                 diff += 2;
+                 carry = 1;
+             }
+             else
+             {
+                 carry = 0;
+             }
          }
     }
 }
