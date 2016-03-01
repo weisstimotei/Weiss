@@ -125,6 +125,15 @@ namespace Data_representation_in_memory
             byte[] actual = Addition(a, b);
             CollectionAssert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void TestForOperationSubtraction()
+        {
+            byte[] a = GetTheTransformationOnTheBasis2(5);
+            byte[] b = GetTheTransformationOnTheBasis2(2);
+            byte[] expected = GetTheTransformationOnTheBasis2(5-2);
+            byte[] actual = Subtraction(a, b);
+            CollectionAssert.AreEqual(expected, actual);
+        }
         byte[] GetTheTransformationOnTheBasis2(int number)
         {
             byte[] bits = new byte[1];
@@ -215,6 +224,7 @@ namespace Data_representation_in_memory
             int i = theLess.Length - 1;
             if (theLess.Length < theBigger.Length)
                 return true;
+            return false;
             while (i >= 0)
             {
                 if (GetByte(theLess, i) != GetByte(theBigger, i))
@@ -224,8 +234,7 @@ namespace Data_representation_in_memory
                     return true;
                 }
                 i++;
-            }
-            return false;
+            }          
         }
          byte[] ExecuteLogicOperation(byte[] first, byte[] second, string operation)
         {
@@ -280,6 +289,30 @@ namespace Data_representation_in_memory
              for (int j = 0; j < formatedResult.Length; j++)
                  formatedResult[j] = result[j + position];
              return formatedResult;
+         }
+         byte[] Subtraction(byte[] first, byte[] second)
+         {
+             byte[] zero = new byte[1];
+             byte[] result = new byte[Math.Max(first.Length, second.Length)];
+             int carry = 0;
+             for (int i = 0; i < result.Length; i++)
+             {
+                var diff = GetByte(first, i) - GetByte(second, i) - carry;
+                 if (diff < 0)
+                 {
+                     diff += 2;
+                     carry = 1;
+                 }
+                 else
+                 {
+                     carry = 0;
+                 }
+
+                 result[i] = (byte)diff;
+             }
+             if (first[0] == 0 && second[0] == 0)
+                 return zero;
+             return FormatResult(GetMirroringNumber(result));
          }
     }
 }
