@@ -166,6 +166,13 @@ namespace Data_representation_in_memory
             byte[] second = GetTheTransformationOnTheBasis2(7);
             Assert.AreEqual(true, OperationEqual(first, second));
         }
+        [TestMethod]
+        public void TestForOperationNotEqual()
+        {
+            byte[] first = GetTheTransformationOnTheBasis2(5);
+            byte[] second = GetTheTransformationOnTheBasis2(6);
+            Assert.AreEqual(true, OperationNotEqual(first, second));
+        }
         byte[] GetTheTransformationOnTheBasis2(int number)
         {
             byte[] bits = new byte[1];
@@ -369,7 +376,12 @@ namespace Data_representation_in_memory
                  return true;
              return false;
          }
-
+         bool OperationNotEqual(byte[] first, byte[] second)
+         {
+             if (OperationLessThan(first, second) == false && OperationLessThan(second, first) == false)
+                 return false;
+             return true;
+         }
     }
 }
 
