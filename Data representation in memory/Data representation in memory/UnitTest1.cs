@@ -143,6 +143,15 @@ namespace Data_representation_in_memory
             byte[] actual = Subtraction(a, b);
             CollectionAssert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void TestForOperationMultiplication()
+        {
+            byte[] theSmallNumber = GetTheTransformationOnTheBasis2(4);
+            byte[] theBigNumber = GetTheTransformationOnTheBasis2(50);
+            byte[] expected = GetTheTransformationOnTheBasis2(200);
+            byte[] actual = Multiplication(theSmallNumber, theBigNumber);
+            CollectionAssert.AreEqual(expected, actual);
+        }
         byte[] GetTheTransformationOnTheBasis2(int number)
         {
             byte[] bits = new byte[1];
@@ -327,6 +336,16 @@ namespace Data_representation_in_memory
                  carry = 0;
              }
          }
+         byte[] Multiplication(byte[] first, byte[] second)
+         {
+             byte[] result = { 0 };
+             for (int i = 0; i <= first.Length; i++)
+             {
+                 result = Addition(result, second);
+             }
+             return result;
+         }
+       
     }
 }
 
