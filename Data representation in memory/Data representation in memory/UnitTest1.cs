@@ -152,6 +152,13 @@ namespace Data_representation_in_memory
             byte[] actual = Multiplication(theSmallNumber, theBigNumber);
             CollectionAssert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void TestForOperationGraterThan()
+        {
+            byte[] theBigger = GetTheTransformationOnTheBasis2(14);
+            byte[] theLess = GetTheTransformationOnTheBasis2(5);
+            Assert.AreEqual(true, OperationGraterThan(theBigger, theLess));
+        }
         byte[] GetTheTransformationOnTheBasis2(int number)
         {
             byte[] bits = new byte[1];
@@ -242,7 +249,6 @@ namespace Data_representation_in_memory
             int i = theLess.Length - 1;
             if (theLess.Length < theBigger.Length)
                 return true;
-            return false;
             while (i >= 0)
             {
                 if (GetByte(theLess, i) != GetByte(theBigger, i))
@@ -251,8 +257,9 @@ namespace Data_representation_in_memory
                         return false;
                     return true;
                 }
-                i++;
-            }          
+                i--;
+            }
+            return false;
         }
          byte[] ExecuteLogicOperation(byte[] first, byte[] second, string operation)
         {
@@ -345,7 +352,13 @@ namespace Data_representation_in_memory
              }
              return result;
          }
-       
+         bool OperationGraterThan(byte[] first, byte[] second)
+         {
+              return OperationLessThan(second, first);
+                
+             
+         }
+
     }
 }
 
