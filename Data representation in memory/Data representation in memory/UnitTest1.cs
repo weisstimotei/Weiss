@@ -159,6 +159,13 @@ namespace Data_representation_in_memory
             byte[] theLess = GetTheTransformationOnTheBasis2(5);
             Assert.AreEqual(true, OperationGraterThan(theBigger, theLess));
         }
+        [TestMethod]
+        public void TestForOperationEqual()
+        {
+            byte[] first = GetTheTransformationOnTheBasis2(7);
+            byte[] second = GetTheTransformationOnTheBasis2(7);
+            Assert.AreEqual(true, OperationEqual(first, second));
+        }
         byte[] GetTheTransformationOnTheBasis2(int number)
         {
             byte[] bits = new byte[1];
@@ -355,8 +362,12 @@ namespace Data_representation_in_memory
          bool OperationGraterThan(byte[] first, byte[] second)
          {
               return OperationLessThan(second, first);
-                
-             
+         }
+         bool OperationEqual(byte[] first, byte[] second)
+         {
+             if (OperationLessThan(first, second) == false && OperationLessThan(second, first) == false)
+                 return true;
+             return false;
          }
 
     }
