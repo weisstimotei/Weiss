@@ -146,9 +146,9 @@ namespace Data_representation_in_memory
         [TestMethod]
         public void TestForOperationMultiplication()
         {
-            byte[] theSmallNumber = GetTheTransformationOnTheBasis2(4);
-            byte[] theBigNumber = GetTheTransformationOnTheBasis2(50);
-            byte[] expected = GetTheTransformationOnTheBasis2(200);
+            byte[] theSmallNumber = GetTheTransformationOnTheBasis2(7);
+            byte[] theBigNumber = GetTheTransformationOnTheBasis2(9);
+            byte[] expected = GetTheTransformationOnTheBasis2(63);
             byte[] actual = Multiplication(theSmallNumber, theBigNumber);
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -360,7 +360,7 @@ namespace Data_representation_in_memory
          byte[] Multiplication(byte[] first, byte[] second)
          {
              byte[] result = { 0 };
-             for (int i = 0; i <= first.Length; i++)
+             for (byte[] i = new byte[] {0}; OperationLessThan(i,first); i=Addition(i,new byte[] {1}))
              {
                  result = Addition(result, second);
              }
