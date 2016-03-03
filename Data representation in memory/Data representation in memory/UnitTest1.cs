@@ -153,6 +153,15 @@ namespace Data_representation_in_memory
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
+        public void TestForOperationMultiplication2()
+        {
+            byte[] theSmallNumber = GetTheTransformationOnTheBasis2(0);
+            byte[] theBigNumber = GetTheTransformationOnTheBasis2(0);
+            byte[] expected = GetTheTransformationOnTheBasis2(0);
+            byte[] actual = Multiplication(theSmallNumber, theBigNumber);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+        [TestMethod]
         public void TestForOperationGraterThan()
         {
             byte[] theBigger = GetTheTransformationOnTheBasis2(14);
