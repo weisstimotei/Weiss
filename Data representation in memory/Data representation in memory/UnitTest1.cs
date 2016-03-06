@@ -381,15 +381,11 @@ namespace Data_representation_in_memory
          }
          bool OperationEqual(byte[] first, byte[] second)
          {
-             if (OperationLessThan(first, second) == false && OperationLessThan(second, first) == false)
-                 return true;
-             return false;
+             return (!OperationLessThan(first, second)  && !OperationLessThan(second, first));
          }
          bool OperationNotEqual(byte[] first, byte[] second)
          {
-             if (OperationLessThan(first, second) == false && OperationLessThan(second, first) == false)
-                 return false;
-             return true;
+             return (!OperationLessThan(first, second)  || !OperationLessThan(second, first));
          }
     }
 }
