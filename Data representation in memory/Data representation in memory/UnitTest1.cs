@@ -182,6 +182,15 @@ namespace Data_representation_in_memory
             byte[] second = GetTheTransformationOnTheBasis2(6);
             Assert.AreEqual(true, OperationNotEqual(first, second));
         }
+        [TestMethod]
+        public void TestForDivision()
+        {
+            byte[] theBigNumber = GetTheTransformationOnTheBasis2(22);
+            byte[] theSmallNumber = GetTheTransformationOnTheBasis2(11);
+            byte[] expected = GetTheTransformationOnTheBasis2(2);
+            byte[] actual = Division(theBigNumber, theSmallNumber);
+            CollectionAssert.AreEqual(expected, actual);
+        }
         byte[] GetTheTransformationOnTheBasis2(int number)
         {
             byte[] bits = new byte[1];
@@ -386,6 +395,15 @@ namespace Data_representation_in_memory
          bool OperationNotEqual(byte[] first, byte[] second)
          {
              return (!OperationLessThan(first, second)  || !OperationLessThan(second, first));
+         }
+         byte[] Division(byte[] first, byte[] second)
+         {
+             int k = 1;
+             for (byte[] i = first; OperationLessThan(second, i); i = Subtraction(i, second))
+             {
+                 k++;
+             }
+             return GetTheTransformationOnTheBasis2(k);
          }
     }
 }
