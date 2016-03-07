@@ -192,6 +192,13 @@ namespace Data_representation_in_memory
             Assert.AreEqual(true, OperationGraterThan(theBigger, theLess));
         }
         [TestMethod]
+        public void TestForOperationGraterThan2()
+        {
+            byte[] theBigger = GetTheTransformationOnBase(11, 200);
+            byte[] theLess = GetTheTransformationOnBase(5, 200);
+            Assert.AreEqual(true, OperationGraterThan(theBigger, theLess));
+        }
+        [TestMethod]
         public void TestForOperationEqual()
         {
             byte[] first = GetTheTransformationOnBase(7, 2);
