@@ -138,6 +138,7 @@ namespace Data_representation_in_memory
             byte[] actual = Addition(a, b);
             CollectionAssert.AreEqual(expected, actual);
         }
+        
         [TestMethod]
         public void TestForOperationSubtraction()
         {
@@ -153,6 +154,15 @@ namespace Data_representation_in_memory
             byte[] a = GetTheTransformationOnBase(0, 2);
             byte[] b = GetTheTransformationOnBase(0, 2);
             byte[] expected = GetTheTransformationOnBase(0, 2);
+            byte[] actual = Subtraction(a, b);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void TestForOperationSubtraction3()
+        {
+            byte[] a = GetTheTransformationOnBase(20, 200);
+            byte[] b = GetTheTransformationOnBase(2, 200);
+            byte[] expected = GetTheTransformationOnBase(18, 200);
             byte[] actual = Subtraction(a, b);
             CollectionAssert.AreEqual(expected, actual);
         }
