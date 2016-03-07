@@ -10,218 +10,225 @@ namespace Data_representation_in_memory
         public void TestConvertToBase2()
         {
             byte[] expected = { 1, 1, 0, 0, 0, 1 };
-            byte[] actual = GetTheTransformationOnTheBasis2(49);
+            byte[] actual = GetTheTransformationOnBase(49, 2);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void TestConvertToBase8()
+        {
+            byte[] expected = { 4, 6, 7, 2 };
+            byte[] actual = GetTheTransformationOnBase(2490, 8);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestConvertToBase2ForZero()
         {
             byte[] expected = { 0 };
-            byte[] actual = GetTheTransformationOnTheBasis2(0);
+            byte[] actual = GetTheTransformationOnBase(0, 2);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationNOT()
         {
             byte[] expected = { 0, 0, 1, 1, 1, 0 };
-            byte[] actual = OperationNOT(GetTheTransformationOnTheBasis2(49));
+            byte[] actual = OperationNOT(GetTheTransformationOnBase(49, 2));
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationAND()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(96);
-            byte[] b = GetTheTransformationOnTheBasis2(3);
+            byte[] a = GetTheTransformationOnBase(96, 2);
+            byte[] b = GetTheTransformationOnBase(3, 2);
             byte[] actual = OperationAND(a, b);
-            byte[] expected = GetTheTransformationOnTheBasis2(3 & 96);
+            byte[] expected = GetTheTransformationOnBase((3 & 96), 2);
             CollectionAssert.AreEqual(expected, actual);
         }
         public void TestForOperationAND2()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(9);
-            byte[] b = GetTheTransformationOnTheBasis2(3);
+            byte[] a = GetTheTransformationOnBase(9, 2);
+            byte[] b = GetTheTransformationOnBase(3, 2);
             byte[] actual = OperationAND(a, b);
-            byte[] expected = GetTheTransformationOnTheBasis2(3 & 9);
+            byte[] expected = GetTheTransformationOnBase((3 & 9), 2);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationOR()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(4);
-            byte[] b = GetTheTransformationOnTheBasis2(9);
+            byte[] a = GetTheTransformationOnBase(4, 2);
+            byte[] b = GetTheTransformationOnBase(9, 2);
             byte[] expected = OperationOR(a, b);
-            byte[] actual = GetTheTransformationOnTheBasis2(4 | 9);
+            byte[] actual = GetTheTransformationOnBase((4 | 9), 2);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationXOR()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(4);
-            byte[] b = GetTheTransformationOnTheBasis2(9);
+            byte[] a = GetTheTransformationOnBase(4, 2);
+            byte[] b = GetTheTransformationOnBase(9, 2);
             byte[] expected = OperationXOR(a, b);
-            byte[] actual = GetTheTransformationOnTheBasis2(4 ^ 9);
+            byte[] actual = GetTheTransformationOnBase((4 ^ 9), 2);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationRightHandShift()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(6);
+            byte[] a = GetTheTransformationOnBase(6, 2);
             byte[] actual = OperationRightHandShift(a, 1);
-            byte[] expected = GetTheTransformationOnTheBasis2(6 >> 1);
+            byte[] expected = GetTheTransformationOnBase((6 >> 1), 2);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationRightHandShift2()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(93);
+            byte[] a = GetTheTransformationOnBase(93, 2);
             byte[] actual = OperationRightHandShift(a, 2);
-            byte[] expected = GetTheTransformationOnTheBasis2(93 >> 2);
+            byte[] expected = GetTheTransformationOnBase((93 >> 2), 2);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationLeftHandShift()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(93);
+            byte[] a = GetTheTransformationOnBase(93, 2);
             byte[] actual = OperationLeftHandShift(a, 1);
-            byte[] expected = GetTheTransformationOnTheBasis2(93 << 1);
+            byte[] expected = GetTheTransformationOnBase((93 << 1), 2);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationLessThan1()
         {
-            byte[] theLess = GetTheTransformationOnTheBasis2(3);
-            byte[] theBigger = GetTheTransformationOnTheBasis2(9);
+            byte[] theLess = GetTheTransformationOnBase(3, 2);
+            byte[] theBigger = GetTheTransformationOnBase(9, 2);
             Assert.AreEqual(true, OperationLessThan(theLess, theBigger));
         }
         [TestMethod]
        public void TestForOperationLessThan2()
         {
-            byte[] theLess = GetTheTransformationOnTheBasis2(0);
-            byte[] theBigger = GetTheTransformationOnTheBasis2(0);
+            byte[] theLess = GetTheTransformationOnBase(0, 2);
+            byte[] theBigger = GetTheTransformationOnBase(0, 2);
             Assert.AreEqual(false, OperationLessThan(theLess, theBigger));
         }
         [TestMethod]
         public void TestForOperationLessThan3()
         {
-            byte[] theLess = GetTheTransformationOnTheBasis2(14);
-            byte[] theBigger = GetTheTransformationOnTheBasis2(9);
+            byte[] theLess = GetTheTransformationOnBase(14, 2);
+            byte[] theBigger = GetTheTransformationOnBase(9, 2);
             Assert.AreEqual(false, OperationLessThan(theLess, theBigger));
         }
         [TestMethod]
         public void TestForOperationAddition()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(70);
-            byte[] b = GetTheTransformationOnTheBasis2(2);
-            byte[] expected = GetTheTransformationOnTheBasis2(72);
+            byte[] a = GetTheTransformationOnBase(70, 2);
+            byte[] b = GetTheTransformationOnBase(2, 2);
+            byte[] expected = GetTheTransformationOnBase(72, 2);
             byte[] actual= Addition(a,b);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationAddition2()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(0);
-            byte[] b = GetTheTransformationOnTheBasis2(0);
-            byte[] expected = GetTheTransformationOnTheBasis2(0);
+            byte[] a = GetTheTransformationOnBase(0, 2);
+            byte[] b = GetTheTransformationOnBase(0, 2);
+            byte[] expected = GetTheTransformationOnBase(0, 2);
             byte[] actual = Addition(a, b);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationSubtraction()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(5);
-            byte[] b = GetTheTransformationOnTheBasis2(2);
-            byte[] expected = GetTheTransformationOnTheBasis2(5-2);
+            byte[] a = GetTheTransformationOnBase(5, 2);
+            byte[] b = GetTheTransformationOnBase(2, 2);
+            byte[] expected = GetTheTransformationOnBase(3, 2);
             byte[] actual = Subtraction(a, b);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationSubtraction2()
         {
-            byte[] a = GetTheTransformationOnTheBasis2(0);
-            byte[] b = GetTheTransformationOnTheBasis2(0);
-            byte[] expected = GetTheTransformationOnTheBasis2(0);
+            byte[] a = GetTheTransformationOnBase(0, 2);
+            byte[] b = GetTheTransformationOnBase(0, 2);
+            byte[] expected = GetTheTransformationOnBase(0, 2);
             byte[] actual = Subtraction(a, b);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationMultiplication()
         {
-            byte[] theSmallNumber = GetTheTransformationOnTheBasis2(7);
-            byte[] theBigNumber = GetTheTransformationOnTheBasis2(9);
-            byte[] expected = GetTheTransformationOnTheBasis2(63);
+            byte[] theSmallNumber = GetTheTransformationOnBase(7, 2);
+            byte[] theBigNumber = GetTheTransformationOnBase(9, 2);
+            byte[] expected = GetTheTransformationOnBase(63, 2);
             byte[] actual = Multiplication(theSmallNumber, theBigNumber);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationMultiplication2()
         {
-            byte[] theSmallNumber = GetTheTransformationOnTheBasis2(0);
-            byte[] theBigNumber = GetTheTransformationOnTheBasis2(0);
-            byte[] expected = GetTheTransformationOnTheBasis2(0);
+            byte[] theSmallNumber = GetTheTransformationOnBase(0, 2);
+            byte[] theBigNumber = GetTheTransformationOnBase(0, 2);
+            byte[] expected = GetTheTransformationOnBase(0, 2);
             byte[] actual = Multiplication(theSmallNumber, theBigNumber);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForOperationGraterThan()
         {
-            byte[] theBigger = GetTheTransformationOnTheBasis2(14);
-            byte[] theLess = GetTheTransformationOnTheBasis2(5);
+            byte[] theBigger = GetTheTransformationOnBase(14, 2);
+            byte[] theLess = GetTheTransformationOnBase(5, 2);
             Assert.AreEqual(true, OperationGraterThan(theBigger, theLess));
         }
         [TestMethod]
         public void TestForOperationEqual()
         {
-            byte[] first = GetTheTransformationOnTheBasis2(7);
-            byte[] second = GetTheTransformationOnTheBasis2(7);
+            byte[] first = GetTheTransformationOnBase(7, 2);
+            byte[] second = GetTheTransformationOnBase(7, 2);
             Assert.AreEqual(true, OperationEqual(first, second));
         }
         [TestMethod]
         public void TestForOperationNotEqual()
         {
-            byte[] first = GetTheTransformationOnTheBasis2(5);
-            byte[] second = GetTheTransformationOnTheBasis2(6);
+            byte[] first = GetTheTransformationOnBase(5, 2);
+            byte[] second = GetTheTransformationOnBase(6, 2);
             Assert.AreEqual(true, OperationNotEqual(first, second));
         }
         [TestMethod]
         public void TestForDivision()
         {
-            byte[] theBigNumber = GetTheTransformationOnTheBasis2(22);
-            byte[] theSmallNumber = GetTheTransformationOnTheBasis2(11);
-            byte[] expected = GetTheTransformationOnTheBasis2(2);
+            byte[] theBigNumber = GetTheTransformationOnBase(22, 2);
+            byte[] theSmallNumber = GetTheTransformationOnBase(11, 2);
+            byte[] expected = GetTheTransformationOnBase(2, 2);
             byte[] actual = Division(theBigNumber, theSmallNumber);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestForDivision2()
         {
-            byte[] theBigNumber = GetTheTransformationOnTheBasis2(22);
-            byte[] theSmallNumber = GetTheTransformationOnTheBasis2(1);
-            CollectionAssert.AreEqual(GetTheTransformationOnTheBasis2(22), Division(theBigNumber, theSmallNumber));
+            byte[] theBigNumber = GetTheTransformationOnBase(22, 2);
+            byte[] theSmallNumber = GetTheTransformationOnBase(1, 2);
+            CollectionAssert.AreEqual(GetTheTransformationOnBase(22, 2), Division(theBigNumber, theSmallNumber));
         }
         [TestMethod]
         public void TestForDivision3()
         {
-            byte[] theBigNumber = GetTheTransformationOnTheBasis2(22);
-            byte[] theSmallNumber = GetTheTransformationOnTheBasis2(22);
-            CollectionAssert.AreEqual(GetTheTransformationOnTheBasis2(1), Division(theBigNumber, theSmallNumber));
+            byte[] theBigNumber = GetTheTransformationOnBase(22, 2);
+            byte[] theSmallNumber = GetTheTransformationOnBase(22, 2);
+            CollectionAssert.AreEqual(GetTheTransformationOnBase(1, 2), Division(theBigNumber, theSmallNumber));
         }
         [TestMethod]
         public void TestForDivision4()
         {
-            byte[] theBigNumber = GetTheTransformationOnTheBasis2(0);
-            byte[] theSmallNumber = GetTheTransformationOnTheBasis2(22);
-            CollectionAssert.AreEqual(GetTheTransformationOnTheBasis2(0), Division(theBigNumber, theSmallNumber));
+            byte[] theBigNumber = GetTheTransformationOnBase(0, 2);
+            byte[] theSmallNumber = GetTheTransformationOnBase(22, 2);
+            CollectionAssert.AreEqual(GetTheTransformationOnBase(0, 2), Division(theBigNumber, theSmallNumber));
         }
-        byte[] GetTheTransformationOnTheBasis2(int number)
+        byte[] GetTheTransformationOnBase(int number, int b)
         {
             byte[] bits = new byte[1];
             int i = 1;
             while (number != 0)
             {
                 Array.Resize(ref bits, i);
-                bits[i - 1] = (byte)(number % 2);
+                bits[i - 1] = (byte)(number % b);
                 i++;
-                number = number / 2;
+                number = number / b;
             }
             return GetMirroringNumber(bits);
 
