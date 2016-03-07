@@ -220,6 +220,13 @@ namespace Data_representation_in_memory
             Assert.AreEqual(true, OperationNotEqual(first, second));
         }
         [TestMethod]
+        public void TestForOperationNotEqual2()
+        {
+            byte[] first = GetTheTransformationOnBase(4, 200);
+            byte[] second = GetTheTransformationOnBase(6, 200);
+            Assert.AreEqual(true, OperationNotEqual(first, second));
+        }
+        [TestMethod]
         public void TestForDivision()
         {
             byte[] theBigNumber = GetTheTransformationOnBase(22, 2);
