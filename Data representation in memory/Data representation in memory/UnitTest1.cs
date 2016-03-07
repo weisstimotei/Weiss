@@ -206,6 +206,13 @@ namespace Data_representation_in_memory
             Assert.AreEqual(true, OperationEqual(first, second));
         }
         [TestMethod]
+        public void TestForOperationEqual2()
+        {
+            byte[] first = GetTheTransformationOnBase(14, 200);
+            byte[] second = GetTheTransformationOnBase(14, 200);
+            Assert.AreEqual(true, OperationEqual(first, second));
+        }
+        [TestMethod]
         public void TestForOperationNotEqual()
         {
             byte[] first = GetTheTransformationOnBase(5, 2);
