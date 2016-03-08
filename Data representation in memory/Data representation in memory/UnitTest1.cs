@@ -285,22 +285,7 @@ namespace Data_representation_in_memory
         {
             return ExecuteLogicOperation(first, second, "AND");
         }
-        byte[] RemoveLeadingZeros(byte[] a)
-        {
-            int k = 0;
-            int position = 0;
-            for (int i = 0; i < a.Length && a[i] == 0; i++)
-            {
-                k++;
-            }
-            byte[] result = new byte[a.Length - k];
-            for (int j = k + 1; j <= a.Length; j++)
-            {
-                result[position] = a[j - 1];
-                position++;
-            }
-            return result;
-        }
+        
 
         private static byte[] GetMirroringNumber(byte[] result)
         {
