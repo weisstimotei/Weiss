@@ -363,25 +363,44 @@ namespace Data_representation_in_memory
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
             for (int i = 0; i < result.Length; i++)
             {
-                GettingCases(first, second, operation, result, i);
+                result[i] = GettingCases(GetByte(first, i), GetByte(second, i), operation);
             }
              return GetMirroringNumber(result);
          }
 
-         private void GettingCases(byte[] first, byte[] second, string operation, byte[] result, int i)
+         private byte GettingCases(byte first, byte second, string operation)
          {
              switch (operation)
              {
                  case "AND":
-                     result[i] = (GetByte(first, i) == 1 && GetByte(second, i) == 1) ? (byte)1 : (byte)0;
-                     break;
+                     return  GetCaseAND(first, second);
                  case "OR":
-                     result[i] = (GetByte(first, i) == 1 || GetByte(second, i) == 1) ? (byte)(1) : (byte)(0);
-                     break;
+                     return  GetCaseOR(first, second);
                  case "XOR":
-                     result[i] = (GetByte(first, i) != GetByte(second, i)) ? (byte)(1) : (byte)(0);
-                     break;
+                     return GetCaseXOR(first, second);
              }
+             return first;
+         }
+
+         private static byte GetCaseXOR(byte first, byte second)
+         {
+             if (first != second)
+                 return (byte)1;
+             return (byte)0;
+         }
+
+         private static byte GetCaseOR(byte first, byte second)
+         {
+             if (first == 1 || second == 1)
+                 return (byte)1;
+             return (byte)0;
+         }
+
+         private static byte GetCaseAND(byte first, byte second)
+         {
+             if (first == 1 && second == 1)
+                 return (byte)1;
+             return (byte)0;
          }
          byte[] Addition(byte[] first, byte [] second)
          {
