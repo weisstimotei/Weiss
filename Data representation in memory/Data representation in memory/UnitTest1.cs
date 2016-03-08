@@ -126,7 +126,7 @@ namespace Data_representation_in_memory
             byte[] a = GetTheTransformationOnBase(70, 2);
             byte[] b = GetTheTransformationOnBase(2, 2);
             byte[] expected = GetTheTransformationOnBase(72, 2);
-            byte[] actual= Addition(a,b);
+            byte[] actual= Addition(a,b,2);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
@@ -135,10 +135,18 @@ namespace Data_representation_in_memory
             byte[] a = GetTheTransformationOnBase(0, 2);
             byte[] b = GetTheTransformationOnBase(0, 2);
             byte[] expected = GetTheTransformationOnBase(0, 2);
-            byte[] actual = Addition(a, b);
+            byte[] actual = Addition(a, b,2);
             CollectionAssert.AreEqual(expected, actual);
         }
-        
+        [TestMethod]
+        public void TestForOperationAddition3()
+        {
+            byte[] a = GetTheTransformationOnBase(7, 200);
+            byte[] b = GetTheTransformationOnBase(4, 200);
+            byte[] expected = GetTheTransformationOnBase(11, 200);
+            byte[] actual = Addition(a, b, 200);
+            CollectionAssert.AreEqual(expected, actual);
+        }
         [TestMethod]
         public void TestForOperationSubtraction()
         {
@@ -172,7 +180,7 @@ namespace Data_representation_in_memory
             byte[] theSmallNumber = GetTheTransformationOnBase(7, 2);
             byte[] theBigNumber = GetTheTransformationOnBase(9, 2);
             byte[] expected = GetTheTransformationOnBase(63, 2);
-            byte[] actual = Multiplication(theSmallNumber, theBigNumber);
+            byte[] actual = Multiplication(theSmallNumber, theBigNumber,2);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
@@ -181,7 +189,7 @@ namespace Data_representation_in_memory
             byte[] theSmallNumber = GetTheTransformationOnBase(0, 2);
             byte[] theBigNumber = GetTheTransformationOnBase(0, 2);
             byte[] expected = GetTheTransformationOnBase(0, 2);
-            byte[] actual = Multiplication(theSmallNumber, theBigNumber);
+            byte[] actual = Multiplication(theSmallNumber, theBigNumber,2);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
@@ -232,7 +240,7 @@ namespace Data_representation_in_memory
             byte[] theBigNumber = GetTheTransformationOnBase(22, 2);
             byte[] theSmallNumber = GetTheTransformationOnBase(11, 2);
             byte[] expected = GetTheTransformationOnBase(2, 2);
-            byte[] actual = Division(theBigNumber, theSmallNumber);
+            byte[] actual = Division(theBigNumber, theSmallNumber,2);
             CollectionAssert.AreEqual(expected, actual);
         }
         [TestMethod]
@@ -240,21 +248,21 @@ namespace Data_representation_in_memory
         {
             byte[] theBigNumber = GetTheTransformationOnBase(22, 2);
             byte[] theSmallNumber = GetTheTransformationOnBase(1, 2);
-            CollectionAssert.AreEqual(GetTheTransformationOnBase(22, 2), Division(theBigNumber, theSmallNumber));
+            CollectionAssert.AreEqual(GetTheTransformationOnBase(22, 2), Division(theBigNumber, theSmallNumber,2));
         }
         [TestMethod]
         public void TestForDivision3()
         {
             byte[] theBigNumber = GetTheTransformationOnBase(22, 2);
             byte[] theSmallNumber = GetTheTransformationOnBase(22, 2);
-            CollectionAssert.AreEqual(GetTheTransformationOnBase(1, 2), Division(theBigNumber, theSmallNumber));
+            CollectionAssert.AreEqual(GetTheTransformationOnBase(1, 2), Division(theBigNumber, theSmallNumber,2));
         }
         [TestMethod]
         public void TestForDivision4()
         {
             byte[] theBigNumber = GetTheTransformationOnBase(0, 2);
             byte[] theSmallNumber = GetTheTransformationOnBase(22, 2);
-            CollectionAssert.AreEqual(GetTheTransformationOnBase(0, 2), Division(theBigNumber, theSmallNumber));
+            CollectionAssert.AreEqual(GetTheTransformationOnBase(0, 2), Division(theBigNumber, theSmallNumber,2));
         }
         byte[] GetTheTransformationOnBase(int number, int b)
         {
@@ -387,7 +395,7 @@ namespace Data_representation_in_memory
                  return (byte)1;
              return (byte)0;
          }
-         byte[] Addition(byte[] first, byte [] second)
+         byte[] Addition(byte[] first, byte [] second,int b)
          {
              byte[] zero = new byte[1];
              byte[] result = new byte[Math.Max(first.Length, second.Length)+1];
@@ -395,8 +403,8 @@ namespace Data_representation_in_memory
              for (int i = 0; i < result.Length; i++)
              {
                  int sum = GetByte(first, i) + GetByte(second, i) + remainder;
-                 result[i] = (byte)(sum % 2);
-                 remainder = sum / 2;
+                 result[i] = (byte)(sum % b);
+                 remainder = sum / b;
              }
              if (first[0] == 0 && second[0] == 0)
                  return zero;
@@ -444,12 +452,12 @@ namespace Data_representation_in_memory
                  carry = 0;
              }
          }
-         byte[] Multiplication(byte[] first, byte[] second)
+         byte[] Multiplication(byte[] first, byte[] second,int b)
          {
              byte[] result = { 0 };
-             for (byte[] i = new byte[] {0}; OperationLessThan(i,first); i=Addition(i,new byte[] {1}))
+             for (byte[] i = new byte[] {0}; OperationLessThan(i,first); i=Addition(i,new byte[] {1},b))
              {
-                 result = Addition(result, second);
+                 result = Addition(result, second,b);
              }
              return result;
          }
@@ -465,12 +473,12 @@ namespace Data_representation_in_memory
          {
              return (!OperationLessThan(first, second)  || !OperationLessThan(second, first));
          }
-         byte[] Division(byte[] first, byte[] second)
+         byte[] Division(byte[] first, byte[] second,int b)
          {
              byte[] result = { 1 };
              for (byte[] i = first; OperationLessThan(second, i); i = Subtraction(i, second))
              {
-                 result = Addition(result, new byte[] { 1 });
+                 result = Addition(result, new byte[] { 1 },b);
              }
              if (OperationLessThan(first, new byte[] { 1 }))
                  return first;
