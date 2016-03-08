@@ -273,6 +273,13 @@ namespace Data_representation_in_memory
             byte[] theSmallNumber = GetTheTransformationOnBase(22, 2);
             CollectionAssert.AreEqual(GetTheTransformationOnBase(0, 2), Division(theBigNumber, theSmallNumber,2));
         }
+        [TestMethod]
+        public void TestForDivision5()
+        {
+            byte[] theBigNumber = GetTheTransformationOnBase(44, 200);
+            byte[] theSmallNumber = GetTheTransformationOnBase(22, 200);
+            CollectionAssert.AreEqual(GetTheTransformationOnBase(2, 200), Division(theBigNumber, theSmallNumber, 200));
+        }
         byte[] GetTheTransformationOnBase(int number, int b)
         {
             byte[] bits = new byte[1];
