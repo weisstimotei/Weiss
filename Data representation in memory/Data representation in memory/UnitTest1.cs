@@ -280,6 +280,14 @@ namespace Data_representation_in_memory
             byte[] theSmallNumber = GetTheTransformationOnBase(22, 200);
             CollectionAssert.AreEqual(GetTheTransformationOnBase(2, 200), Division(theBigNumber, theSmallNumber, 200));
         }
+        [TestMethod]
+        public void TestForFactorial()
+        {
+            byte[] a = GetTheTransformationOnBase(4, 2);
+            byte[] expected = GetTheTransformationOnBase(24, 2);
+            byte[] actual = GetFactorial(a, 2);
+            CollectionAssert.AreEqual(expected, actual);
+        }
         byte[] GetTheTransformationOnBase(int number, int b)
         {
             byte[] bits = new byte[1];
@@ -497,6 +505,16 @@ namespace Data_representation_in_memory
                  return first;
              return result;
          }
+        byte[]  GetFactorial(byte[] number,int b)
+        {
+            byte[] one = new byte[] { 1 };
+            byte[] product = { 1 };
+            for (byte[] i = one; OperationLessThan(Subtraction(i,one), number); i = Addition(i, one, b))
+            {
+                product = Multiplication(product,i,b);
+            }
+            return product;
+        }
     }
 }
 
