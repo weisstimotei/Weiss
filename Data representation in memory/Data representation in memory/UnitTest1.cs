@@ -424,21 +424,18 @@ namespace Data_representation_in_memory
              }
              if (first[0] == 0 && second[0] == 0)
                  return zero;
-             return FormatResult(GetMirroringNumber(result));
+             return GetMirroringNumber(FormatResult(result));
          }
          byte[] FormatResult(byte[] result)
          {
-             int position = 0;
-             for (int j = 0; j < result.Length; j++)
+             for (int j = result.Length-1; j>=0; j--)
              {
                  if (result[j] == 0)
-                     position++;
-                 else break;
+                     Array.Resize(ref result, j);
+                 else
+                     break;
              }
-             byte[] formatedResult = new byte[result.Length - position];
-             for (int j = 0; j < formatedResult.Length; j++)
-                 formatedResult[j] = result[j + position];
-             return formatedResult;
+             return result;
          }
          byte[] Subtraction(byte[] first, byte[] second)
          {
@@ -453,7 +450,7 @@ namespace Data_representation_in_memory
              }
              if (first[0] == 0 && second[0] == 0)
                  return zero;
-             return FormatResult(GetMirroringNumber(result));
+             return GetMirroringNumber(FormatResult(result));
          }
 
          private static void GetTheIfForSubtraction(ref int carry, ref int diff)
