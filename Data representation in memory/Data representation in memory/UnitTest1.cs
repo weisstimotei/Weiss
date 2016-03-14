@@ -288,6 +288,15 @@ namespace Data_representation_in_memory
             byte[] actual = GetFactorial(a, 2);
             CollectionAssert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void TestForFactorial2()
+        {
+            byte[] a = GetTheTransformationOnBase(49, 2);
+            byte[] b = GetTheTransformationOnBase(48, 2);
+            byte[] expected = GetTheTransformationOnBase(49, 2);
+            byte[] actual = Division(GetFactorial(a, 2), GetFactorial(b, 2),2);
+            CollectionAssert.AreEqual(expected, actual);
+        }
         byte[] GetTheTransformationOnBase(int number, int b)
         {
             byte[] bits = new byte[1];
