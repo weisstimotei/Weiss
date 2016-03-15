@@ -12,11 +12,18 @@ namespace Password
             Assert.AreEqual("",GetPassword(0));
         }
         [TestMethod]
-        public void TestForGetLetters()
+        public void TestForGetLowerCase()
         {
-            string a = GetLetters(5);
-            string b = GetLowerCase(a);
-            Assert.AreEqual(b,a );
+            string a = GetLowerCase(5);
+            bool actual = CheckSmallLettersOfAString(a);
+            Assert.AreEqual(true, actual);
+        }
+        [TestMethod]
+        public void TestForGetUpperCase()
+        {
+            string a =GetUpperCase(5);
+            bool actual = CheckBigLettersOfAString(a);
+            Assert.AreEqual(true, actual);
         }
         string GetPassword(int length)
         {
@@ -36,15 +43,29 @@ namespace Password
             }
             return output;
         }
-        string GetLowerCase(string inputString)
+        string GetLowerCase(int length)
         {
-            string lowerCase = inputString.ToLower();
+            string lowerCase = GetLetters(length).ToLower();
             return lowerCase;
         }
-        string GetUpperCase(string inputString)
+        string GetUpperCase(int length)
         {
-            string upperCase = inputString.ToUpper();
+            string upperCase = GetLetters(length).ToUpper();
             return upperCase;
+        }
+        public bool CheckSmallLettersOfAString(string inputString)
+        {
+
+            for (int i = 0; i < inputString.Length - 1; i++)
+            {
+                if (!(char.IsLower(inputString[i]))) 
+                    return false;
+            }
+            return true;
+        }
+        bool CheckBigLettersOfAString(string inputString)
+        {
+            return !CheckSmallLettersOfAString(inputString);
         }
     }
 }
