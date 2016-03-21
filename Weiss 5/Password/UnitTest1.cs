@@ -24,6 +24,11 @@ namespace Password
             Options[] password = new Options[] { new Options(4, 3, 0, 0, false, false) };
             Assert.AreEqual(true, CheckForLowerAndUpperLetters(GetPassword(password)));
         }
+         [TestMethod]
+         public void TestCheckForLowerAndUpperLettersFunction()
+         {
+             Assert.AreEqual(true, CheckForLowerAndUpperLetters("abbccAAAA"));
+         }
 
         string GetPassword(Options[] options)
         {
