@@ -7,15 +7,36 @@ namespace Password
     public class UnitTest1
     {
         [TestMethod]
-        public void TestForGetPassword1()
+        public void TestGetPasswordOfSmallCharacters()
         {
-            Assert.AreEqual("", GetPassword(0));
+            var password = new Options[] { new Options(1, 0, 0, 0, false, false) };
+            Assert.AreEqual(true, CheckSmallLettersOfAString(GetPassword(password)));
         }
 
-        string GetPassword(int length)
+        string GetPassword(Options[] options)
         {
-            return "";
+            string result = string.Empty;
+            for (int i = 0; i < options.Length; i++)
+            {
+                result = GetSmallLetters(options[i].smallChars); 
+            }
+            return result;
         }
+        string GetSmallLetters(int noOfSmallLetters)
+        {
+            string output = string.Empty;
+            Random rand = new Random();
+
+            while (noOfSmallLetters != 0)
+            {
+                int randomNumber = rand.Next(0, 26);
+                char holdChar = (char)('a' + randomNumber);
+                output += holdChar;
+                noOfSmallLetters--;
+            }
+            return output;
+        }
+       
         public struct Options
         {
             public int smallChars;
@@ -34,6 +55,16 @@ namespace Password
                 this.notIncludedSimilarChars = notIncludedSimilarChars;
                 this.notIncludedAmbigueChars = notIncludedAmbigueChars;
             }
+        }
+       public bool CheckSmallLettersOfAString(string inputString)
+        {
+
+            for (int i = 0; i < inputString.Length - 1; i++)
+            {
+                if (!(char.IsLower(inputString[i]))) 
+                    return false;
+            }
+            return true;
         }
     }
 }
