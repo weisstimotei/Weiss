@@ -18,13 +18,20 @@ namespace Password
             string smallPassowrd = GetSmallLetters(5);
             Assert.AreEqual(true, CheckSmallLettersOfAString(smallPassowrd));
         }
+        [TestMethod]
+        public void TestToCheckForLowerAndUpperLetters()
+        {
+            Options[] password = new Options[] { new Options(4, 3, 0, 0, false, false) };
+            Assert.AreEqual(true, CheckForLowerAndUpperLetters(GetPassword(password)));
+        }
 
         string GetPassword(Options[] options)
         {
             string result = string.Empty;
             for (int i = 0; i < options.Length; i++)
             {
-                result = GetSmallLetters(options[i].smallChars); 
+                result = GetSmallLetters(options[i].smallChars - options[i].noOfUpperChars);
+                result += GetBigLetters(options[i].noOfUpperChars);
             }
             return result;
         }
@@ -72,6 +79,24 @@ namespace Password
             }
             return true;
         }
+       public string GetBigLetters(int noOfLetters)
+       {
+           string output = GetSmallLetters(noOfLetters);
+           return output.ToUpper();
+       }
+       bool CheckForLowerAndUpperLetters(string inputString)
+       {
+           return !(CheckSmallLettersOfAString(inputString) && CheckUpperLetters(inputString));
+       }
+       bool CheckUpperLetters(string inputString)
+       {
+           for (int i = 0; i < inputString.Length - 1; i++)
+           {
+               if ((!(char.IsUpper(inputString[i]))))
+                   return false;
+           }
+           return true;
+       }
     }
 }
 
