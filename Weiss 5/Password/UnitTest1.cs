@@ -9,8 +9,14 @@ namespace Password
         [TestMethod]
         public void TestGetPasswordOfSmallCharacters()
         {
-            var password = new Options[] { new Options(1, 0, 0, 0, false, false) };
+            Options[] password = new Options[] { new Options(1, 0, 0, 0, false, false) };
             Assert.AreEqual(true, CheckSmallLettersOfAString(GetPassword(password)));
+        }
+        [TestMethod]
+        public void TestToCheckSmallLetters()
+        {
+            string smallPassowrd = GetSmallLetters(5);
+            Assert.AreEqual(true, CheckSmallLettersOfAString(smallPassowrd));
         }
 
         string GetPassword(Options[] options)
