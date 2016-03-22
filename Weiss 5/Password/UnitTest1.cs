@@ -29,6 +29,17 @@ namespace Password
          {
              Assert.AreEqual(true, CheckForLowerAndUpperLetters("abbccAAAA"));
          }
+         [TestMethod]
+         public void TestCountUpperLetters()
+         {
+             var bigPassword = GetBigLetters(5);
+             Assert.AreEqual(4, CountUpperLetters(bigPassword));
+         }
+         [TestMethod]
+         public void TestCountNumbersInPassword()
+         {
+             Assert.AreEqual(7,CountNumbers(GetNumbers(7)));
+         }
 
         string GetPassword(Options[] options)
         {
@@ -102,6 +113,42 @@ namespace Password
            }
            return true;
        }
+       public int CountUpperLetters(string inputString)
+       {
+           int count = 0;
+           for (int i = 0; i < inputString.Length - 1; i++)
+           {
+               if ((char.IsUpper(inputString[i]))) 
+                   count++;
+           }
+           return count;
+       }
+       string GetNumbers(int noOfNumbers)
+       {
+           int holder = 0;
+           string output = string.Empty;
+           Random rand = new Random();
+           while (noOfNumbers != 0)
+             {
+                 holder = rand.Next(0, 9);
+                 output += holder;
+                 noOfNumbers--;
+             }
+           return output;
+       }
+        int CountNumbers(string inputString) 
+        {
+            int count = 0;
+            for (int i = 0; i < inputString.Length;i++ )
+            {
+                int nr = (int)Char.GetNumericValue(inputString[i]);
+                if (nr >= 0 && nr <= 9)
+                {
+                    count++;
+                } 
+            }
+            return count;
+         }
     }
 }
 
