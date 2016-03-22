@@ -40,14 +40,20 @@ namespace Password
          {
              Assert.AreEqual(7,CountNumbers(GetNumbers(7)));
          }
+         
 
         string GetPassword(Options[] options)
         {
             string result = string.Empty;
+            int smallChars = 0;
+            int upperChars = 0;
+            int numberChars= 0;
             for (int i = 0; i < options.Length; i++)
             {
-                result = GetSmallLetters(options[i].smallChars - options[i].noOfUpperChars);
-                result += GetBigLetters(options[i].noOfUpperChars);
+                smallChars = (options[i].smallChars - options[i].noOfUpperChars - options[i].noOfNumbers);
+                upperChars = (options[i].noOfUpperChars);
+                numberChars = options[i].noOfNumbers;
+                result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
             }
             return result;
         }
