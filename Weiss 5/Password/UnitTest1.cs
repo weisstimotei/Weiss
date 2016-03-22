@@ -40,7 +40,11 @@ namespace Password
          {
              Assert.AreEqual(7,CountNumbers(GetNumbers(7)));
          }
-         
+         [TestMethod]
+         public void TestForRemoveChars()
+         {
+             Assert.AreEqual("abc", RemoveChars("Iol10abc"));
+         }
 
         string GetPassword(Options[] options)
         {
@@ -154,7 +158,16 @@ namespace Password
                 } 
             }
             return count;
-         }
+        }
+        string RemoveChars(string inputString)
+        {
+            inputString = inputString.Replace("l", "");
+            inputString = inputString.Replace("1", "");
+            inputString = inputString.Replace("I", "");
+            inputString = inputString.Replace("o", "");
+            inputString = inputString.Replace("0", "");
+            return inputString;
+        }
     }
 }
 
