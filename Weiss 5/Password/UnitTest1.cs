@@ -45,6 +45,7 @@ namespace Password
          {
              Assert.AreEqual("abc", RemoveChars("Iol10abc"));
          }
+        
 
         string GetPassword(Options[] options)
         {
@@ -57,7 +58,13 @@ namespace Password
                 smallChars = (options[i].smallChars - options[i].noOfUpperChars - options[i].noOfNumbers);
                 upperChars = (options[i].noOfUpperChars);
                 numberChars = options[i].noOfNumbers;
-                result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
+                if ((options[i].notIncludedAmbigueChars))
+                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
+                else
+                {
+                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
+                    result = RemoveChars(result);
+                }
             }
             return result;
         }
