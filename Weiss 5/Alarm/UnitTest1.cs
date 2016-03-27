@@ -22,6 +22,13 @@ namespace Alarm
         {
             Assert.AreEqual(false, CheckAlarmForWeekDays(Days.Sunday, 5));
         }
+        [TestMethod]
+        public void CheckAlarmForBothDaysOfWeekend()
+        {
+            Days weekend = Days.Sunday | Days.Saturday;
+            Assert.AreEqual(true, CheckAlarmForWeekend(weekend, 6));
+        }
+
         [Flags]
         enum Days
         {
@@ -38,6 +45,10 @@ namespace Alarm
             var dayToCheck = Days.Monday | Days.Tuesday | Days.Wednesday | Days.Thursday | Days.Friday ;
             bool testDay = (dayToCheck & weekDay) == weekDay;
             return testDay;
-          }
+        }
+        bool CheckAlarmForWeekend(Days weekendDays, int hour)
+        {
+            return !(CheckAlarmForWeekDays(weekendDays,8));
+        }
     }
 }
