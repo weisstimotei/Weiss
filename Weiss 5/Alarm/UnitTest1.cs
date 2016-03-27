@@ -58,18 +58,14 @@ namespace Alarm
             bool result = false;
             for (int i = 0; i < alarm.Length; i++)
             {
-                result = (CheckDays(alarm[i].day, day) && CheckHour(alarm[i].hour, hour));
+                result = CheckDays(alarm[i].day, day, alarm[i].hour, hour);
             }
             return result;
         }
-        bool CheckDays(Days day1, Days day2)
+        bool CheckDays(Days dayConfig, Days dayAlarm, int hourConfig, int hourAlarm)
         {
-            return (day1 & day2) != 0;
+            return ((dayConfig & dayAlarm) != 0) && (hourConfig == hourAlarm);
         }
-        bool CheckHour(int hour1, int hour2)
-        {
-            return hour1 == hour2;
-        }
-       
+         
     }
 }
