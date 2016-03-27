@@ -24,7 +24,13 @@ namespace Alarm
             AlarmConfig[] Weekend = new AlarmConfig[] { new AlarmConfig(Days.Sunday, 8) };
             Assert.IsTrue(CheckAlarm(Weekend, Days.Sunday, 8));
         }
-        
+        [TestMethod]
+        public void AlarmForWeekend()
+        {
+            const Days Days1 = Days.Sunday | Days.Saturday;
+            AlarmConfig[] mondayAndWednesday = new AlarmConfig[] { new AlarmConfig(Days1, 8) };
+            Assert.IsTrue(CheckAlarm(mondayAndWednesday, Days.Sunday | Days.Saturday, 8));
+        }
 
         [Flags]
         enum Days
@@ -52,20 +58,17 @@ namespace Alarm
             bool result = false;
             for (int i = 0; i < alarm.Length; i++)
             {
-                if (CheckDays(alarm[i].day, day) && CheckHour(alarm[i].hour, hour))
-                {
-                    result = true;
-                }
+                result = (CheckDays(alarm[i].day, day) && CheckHour(alarm[i].hour, hour));
             }
             return result;
         }
         bool CheckDays(Days day1, Days day2)
         {
-            return ((day1 & day2) != 0) ? true : false;
+            return (day1 & day2) != 0;
         }
         bool CheckHour(int hour1, int hour2)
         {
-            return (hour1 == hour2) ? true : false;
+            return hour1 == hour2;
         }
        
     }
