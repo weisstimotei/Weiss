@@ -50,6 +50,11 @@ namespace Password
          {
              Assert.AreEqual("abc", RemoveAmbigueChars("{}abc[]()~"));
          }
+         [TestMethod]
+         public void TestForGenerateSymbols()
+         {
+             Assert.AreEqual((GenerateSymbols(4)),(GenerateSymbols(4)));
+         }
         
 
         string GetPassword(Options[] options)
@@ -199,6 +204,19 @@ namespace Password
         string RemoveAmbigueChars(string inputString)
         {
             return RemoveChars(inputString, "{}[]()/\'~,;.<> ");        
+        }
+        string GenerateSymbols(int numberOfSymbols)
+        {
+            int holder;
+            string output = string.Empty;
+            Random rand = new Random();
+            while(numberOfSymbols != 0)
+            {
+                holder = rand.Next(' ', '/');
+                output += (char)holder;
+                numberOfSymbols--;
+            }
+            return output;
         }
     }
 }
