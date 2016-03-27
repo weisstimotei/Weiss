@@ -55,39 +55,46 @@ namespace Password
          {
              Assert.AreEqual((GenerateSymbols(4)),(GenerateSymbols(4)));
          }
-        
+         [TestMethod]
+         public void TestForPasswordWithAllOptions()
+         {
+             var password = new Options[] { new Options(10, 2, 3, 4, true, true) };
+             Assert.AreEqual(3, CountNumbers(GetPassword(password)));
+         }
 
         string GetPassword(Options[] options)
         {
             string result = string.Empty;
             int smallChars = 0;
             int upperChars = 0;
-            int numberChars= 0;
+            int numberChars = 0;
+            int numberSymbols = 0;
             for (int i = 0; i < options.Length; i++)
             {
-                smallChars = (options[i].smallChars - options[i].noOfUpperChars - options[i].noOfNumbers);
+                smallChars = (options[i].smallChars - options[i].noOfUpperChars - options[i].noOfNumbers - options[i].noOfSymbols);
                 upperChars = (options[i].noOfUpperChars);
                 numberChars = options[i].noOfNumbers;
+                numberSymbols = options[i].noOfSymbols;
                 if (!(options[i].notIncludedAmbigueChars) && !(options[i].notIncludedSimilarChars))
                     while (result.Length != options[i].smallChars)
                     {
-                        result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
+                        result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars) + GenerateSymbols(numberSymbols);
                         result = RemoveChars(result);
                     }
                 if (options[i].notIncludedSimilarChars && options[i].notIncludedAmbigueChars)
                 {
-                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
+                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars) + GenerateSymbols(numberSymbols);
                     result = RemoveAmbigueChars(result);
                     result = RemoveChars(result);
                 }
                 if (options[i].notIncludedSimilarChars && !(options[i].notIncludedAmbigueChars))
                 {
-                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
+                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars) + GenerateSymbols(numberSymbols);
                     result = RemoveChars(result);
                 }
                 else
                 {
-                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
+                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars) + GenerateSymbols(numberSymbols);
                     result = RemoveAmbigueChars(result);
                 }
             }
@@ -218,6 +225,7 @@ namespace Password
             }
             return output;
         }
+       
     }
 }
 
