@@ -9,7 +9,7 @@ namespace Password
         [TestMethod]
         public void TestGetPasswordOfSmallCharacters()
         {
-            Options[] password = new Options[] { new Options(1, 0, 0, 0, false, false) };
+            Options password = new Options (1, 0, 0, 0, false, false) ;
             Assert.AreEqual(true, CheckSmallLettersOfAString(GetPassword(password)));
         }
         [TestMethod]
@@ -21,7 +21,7 @@ namespace Password
         [TestMethod]
         public void TestToCheckForLowerAndUpperLetters()
         {
-            Options[] password = new Options[] { new Options(4, 3, 0, 0, false, false) };
+            Options password = new Options(4, 3, 0, 0, false, false) ;
             Assert.AreEqual(true, CheckForLowerAndUpperLetters(GetPassword(password)));
         }
          [TestMethod]
@@ -58,29 +58,23 @@ namespace Password
          [TestMethod]
          public void TestForPasswordWithAllOptions()
          {
-             var password = new Options[] { new Options(10, 2, 3, 4, true, true) };
+             Options password = new Options(10, 2, 3, 4, true, true) ;
              Assert.AreEqual(3, CountNumbers(GetPassword(password)));
          }
 
-        string GetPassword(Options[] options)
+        string GetPassword(Options options)
         {
             string result = string.Empty;
-            int smallChars = 0;
-            int upperChars = 0;
-            int numberChars = 0;
-            int numberSymbols = 0;
-            for (int i = 0; i < options.Length; i++)
-            {
-                result = GetSmallLetters(options[i].smallChars) + GetBigLetters(options[i].noOfUpperChars) + GetNumbers(options[i].noOfNumbers) + GenerateSymbols(options[i].noOfSymbols);
-                if (options[i].notIncludedSimilarChars)    
+                result = GetSmallLetters(options.smallChars) + GetBigLetters(options.noOfUpperChars) + GetNumbers(options.noOfNumbers) + GenerateSymbols(options.noOfSymbols);
+                if (options.notIncludedSimilarChars)    
                 {
                      result = RemoveChars(result);
                 }
-                if (options[i].notIncludedAmbigueChars)
+                if (options.notIncludedAmbigueChars)
                 {
                      result = RemoveAmbigueChars(result);
                 }
-            }
+          
             return result;
         }
         string GetSmallLetters(int noOfSmallLetters)
