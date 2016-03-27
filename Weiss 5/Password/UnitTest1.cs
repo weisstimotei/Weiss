@@ -186,32 +186,19 @@ namespace Password
             }
             return count;
         }
-        string RemoveChars(string inputString)
+        string RemoveChars(string inputString, string charsToRemove = "l1IoO0")
         {
-            inputString = inputString.Replace("l", "");
-            inputString = inputString.Replace("1", "");
-            inputString = inputString.Replace("I", "");
-            inputString = inputString.Replace("o", "");
-            inputString = inputString.Replace("0", "");
-            return inputString;
+           string result = string.Empty;
+           for (int i = 0; i < inputString.Length; i++)
+             {
+                 if (!charsToRemove.Contains(inputString[i].ToString()))
+                     result += inputString[i];             
+             }
+             return result;
         }
         string RemoveAmbigueChars(string inputString)
         {
-            inputString = inputString.Replace("{", "");
-            inputString = inputString.Replace("}", "");
-            inputString = inputString.Replace("[", "");
-            inputString = inputString.Replace("]", "");
-            inputString = inputString.Replace("(", "");
-            inputString = inputString.Replace(")", "");
-            inputString = inputString.Replace("/", "");
-            inputString = inputString.Replace(",", "");
-            inputString = inputString.Replace("'", "");
-            inputString = inputString.Replace("~", "");
-            inputString = inputString.Replace(";", "");
-            inputString = inputString.Replace(".", "");
-            inputString = inputString.Replace("<", "");
-            inputString = inputString.Replace(">", "");
-            return inputString;           
+            return RemoveChars(inputString, "{}[]()/\'~,;.<> ");        
         }
     }
 }
