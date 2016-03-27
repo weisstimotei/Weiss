@@ -45,6 +45,11 @@ namespace Password
          {
              Assert.AreEqual("abc", RemoveChars("Iol10abc"));
          }
+         [TestMethod]
+         public void TestForRemoveAmbigueChars()
+         {
+             Assert.AreEqual("abc", RemoveAmbigueChars("{}abc[]()~"));
+         }
         
 
         string GetPassword(Options[] options)
@@ -174,6 +179,24 @@ namespace Password
             inputString = inputString.Replace("o", "");
             inputString = inputString.Replace("0", "");
             return inputString;
+        }
+        string RemoveAmbigueChars(string inputString)
+        {
+            inputString = inputString.Replace("{", "");
+            inputString = inputString.Replace("}", "");
+            inputString = inputString.Replace("[", "");
+            inputString = inputString.Replace("]", "");
+            inputString = inputString.Replace("(", "");
+            inputString = inputString.Replace(")", "");
+            inputString = inputString.Replace("/", "");
+            inputString = inputString.Replace(",", "");
+            inputString = inputString.Replace("'", "");
+            inputString = inputString.Replace("~", "");
+            inputString = inputString.Replace(";", "");
+            inputString = inputString.Replace(".", "");
+            inputString = inputString.Replace("<", "");
+            inputString = inputString.Replace(">", "");
+            return inputString;           
         }
     }
 }
