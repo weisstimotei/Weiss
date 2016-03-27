@@ -71,31 +71,14 @@ namespace Password
             int numberSymbols = 0;
             for (int i = 0; i < options.Length; i++)
             {
-                smallChars = (options[i].smallChars - options[i].noOfUpperChars - options[i].noOfNumbers - options[i].noOfSymbols);
-                upperChars = (options[i].noOfUpperChars);
-                numberChars = options[i].noOfNumbers;
-                numberSymbols = options[i].noOfSymbols;
-                if (!(options[i].notIncludedAmbigueChars) && !(options[i].notIncludedSimilarChars))
-                    while (result.Length != options[i].smallChars)
-                    {
-                        result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars) + GenerateSymbols(numberSymbols);
-                        result = RemoveChars(result);
-                    }
-                if (options[i].notIncludedSimilarChars && options[i].notIncludedAmbigueChars)
+                result = GetSmallLetters(options[i].smallChars) + GetBigLetters(options[i].noOfUpperChars) + GetNumbers(options[i].noOfNumbers) + GenerateSymbols(options[i].noOfSymbols);
+                if (options[i].notIncludedSimilarChars)    
                 {
-                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars) + GenerateSymbols(numberSymbols);
-                    result = RemoveAmbigueChars(result);
-                    result = RemoveChars(result);
+                     result = RemoveChars(result);
                 }
-                if (options[i].notIncludedSimilarChars && !(options[i].notIncludedAmbigueChars))
+                if (options[i].notIncludedAmbigueChars)
                 {
-                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars) + GenerateSymbols(numberSymbols);
-                    result = RemoveChars(result);
-                }
-                else
-                {
-                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars) + GenerateSymbols(numberSymbols);
-                    result = RemoveAmbigueChars(result);
+                     result = RemoveAmbigueChars(result);
                 }
             }
             return result;
