@@ -9,25 +9,22 @@ namespace Alarm
         [TestMethod]
         public void AlarmForMonday()
         {
-              var weekDays = Days.Monday ;
-              Assert.AreEqual(true, CheckAlarmForWeekDays(weekDays, 6));
+            AlarmConfig[] monday = new AlarmConfig[] { new AlarmConfig(Days.Monday, 8) };
+            Assert.IsTrue(CheckAlarm(monday, Days.Monday, 8));
         }
         [TestMethod]
         public void AlarmForTuesdayAndFriday()
         {
-              Assert.AreEqual(true, CheckAlarmForWeekDays(Days.Tuesday & Days.Friday, 6));
+            AlarmConfig[] TuesdayAndFriday = new AlarmConfig[] { new AlarmConfig(Days.Tuesday & Days.Friday, 8) };
+            Assert.IsFalse(CheckAlarm(TuesdayAndFriday, Days.Tuesday & Days.Friday, 8));
         }
         [TestMethod]
         public void CheckAlarmForWeekend()
         {
-            Assert.AreEqual(false, CheckAlarmForWeekDays(Days.Sunday, 5));
+            AlarmConfig[] Weekend = new AlarmConfig[] { new AlarmConfig(Days.Sunday, 8) };
+            Assert.IsTrue(CheckAlarm(Weekend, Days.Sunday, 8));
         }
-        [TestMethod]
-        public void CheckAlarmForBothDaysOfWeekend()
-        {
-            Days weekend = Days.Sunday | Days.Saturday;
-            Assert.AreEqual(true, CheckAlarmForWeekend(weekend, 6));
-        }
+        
 
         [Flags]
         enum Days
@@ -40,15 +37,36 @@ namespace Alarm
             Saturday = 0x20,
             Sunday = 0x40
         }
-        bool CheckAlarmForWeekDays(Days weekDay,int hour)
+        struct AlarmConfig
         {
-            var dayToCheck = Days.Monday | Days.Tuesday | Days.Wednesday | Days.Thursday | Days.Friday ;
-            bool testDay = (dayToCheck & weekDay) == weekDay;
-            return testDay;
+            public Days day;
+            public int hour;
+            public AlarmConfig(Days weekDays, int hour)
+            {
+                this.day = weekDays;
+                this.hour = hour;
+            }
         }
-        bool CheckAlarmForWeekend(Days weekendDays, int hour)
+        bool CheckAlarm(AlarmConfig[] alarm, Days day, int hour)
         {
-            return !(CheckAlarmForWeekDays(weekendDays,8));
+            bool result = false;
+            for (int i = 0; i < alarm.Length; i++)
+            {
+                if (CheckDays(alarm[i].day, day) && CheckHour(alarm[i].hour, hour))
+                {
+                    result = true;
+                }
+            }
+            return result;
         }
+        bool CheckDays(Days day1, Days day2)
+        {
+            return ((day1 & day2) != 0) ? true : false;
+        }
+        bool CheckHour(int hour1, int hour2)
+        {
+            return (hour1 == hour2) ? true : false;
+        }
+       
     }
 }
