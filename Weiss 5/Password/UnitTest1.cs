@@ -63,12 +63,27 @@ namespace Password
                 smallChars = (options[i].smallChars - options[i].noOfUpperChars - options[i].noOfNumbers);
                 upperChars = (options[i].noOfUpperChars);
                 numberChars = options[i].noOfNumbers;
-                if ((options[i].notIncludedAmbigueChars))
+                if (!(options[i].notIncludedAmbigueChars) && !(options[i].notIncludedSimilarChars))
+                    while (result.Length != options[i].smallChars)
+                    {
+                        result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
+                        result = RemoveChars(result);
+                    }
+                if (options[i].notIncludedSimilarChars && options[i].notIncludedAmbigueChars)
+                {
                     result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
-                else
+                    result = RemoveAmbigueChars(result);
+                    result = RemoveChars(result);
+                }
+                if (options[i].notIncludedSimilarChars && !(options[i].notIncludedAmbigueChars))
                 {
                     result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
                     result = RemoveChars(result);
+                }
+                else
+                {
+                    result = GetSmallLetters(smallChars) + GetBigLetters(upperChars) + GetNumbers(numberChars);
+                    result = RemoveAmbigueChars(result);
                 }
             }
             return result;
