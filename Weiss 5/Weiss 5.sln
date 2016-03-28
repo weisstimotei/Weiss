@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarm", "Alarm\Alarm.csproj", "{04A26064-3141-446B-8E49-4A5730BCB682}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping", "Shopping\Shopping.csproj", "{80CB1D8D-0ED7-48D2-9728-E599CE113639}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{04A26064-3141-446B-8E49-4A5730BCB682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04A26064-3141-446B-8E49-4A5730BCB682}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04A26064-3141-446B-8E49-4A5730BCB682}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04A26064-3141-446B-8E49-4A5730BCB682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80CB1D8D-0ED7-48D2-9728-E599CE113639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80CB1D8D-0ED7-48D2-9728-E599CE113639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80CB1D8D-0ED7-48D2-9728-E599CE113639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80CB1D8D-0ED7-48D2-9728-E599CE113639}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
