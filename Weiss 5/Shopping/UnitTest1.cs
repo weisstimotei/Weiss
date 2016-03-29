@@ -37,6 +37,14 @@ namespace Shopping
             CollectionAssert.AreEqual(new ShoppingList[] {new ShoppingList("oil",4) }, RemoveTheMostExpensive(shopping));
 
         }
+        [TestMethod]
+        public void TestForAddObject()
+        {
+            var actualShopping = new ShoppingList[] { new ShoppingList("oil", 5), new ShoppingList("bread", 15) };
+            var newObject = new ShoppingList("milk", 4);
+            var newListOfObjects = new ShoppingList[] { new ShoppingList("oil", 5), new ShoppingList("bread", 15), new ShoppingList("milk", 4) };
+            CollectionAssert.AreEqual(newListOfObjects, AddObject(actualShopping, newObject));
+        }
         public struct ShoppingList
         {
             public string nameOfProduct;
@@ -94,6 +102,12 @@ namespace Shopping
                     }
                 }
             Array.Resize(ref shoppingObjects, shoppingObjects.Length - 1);
+            return shoppingObjects;
+        }
+        public ShoppingList[] AddObject(ShoppingList[] shoppingObjects, ShoppingList newObject)
+        {
+            Array.Resize(ref shoppingObjects, shoppingObjects.Length + 1);
+            shoppingObjects[shoppingObjects.Length - 1] = newObject;
             return shoppingObjects;
         }
     }
