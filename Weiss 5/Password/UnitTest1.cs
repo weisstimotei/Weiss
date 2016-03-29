@@ -191,14 +191,19 @@ namespace Password
         }
         string GenerateSymbols(int numberOfSymbols)
         {
+            int k = 0;
             int holder;
             string output = string.Empty;
             Random rand = new Random();
-            while(numberOfSymbols != 0)
+            while(k != numberOfSymbols)
             {
                 holder = rand.Next(' ', '/');
                 output += (char)holder;
-                numberOfSymbols--;
+                
+                RemoveAmbigueChars(output);
+               
+                k = output.Length;
+                k++;
             }
             return output;
         }
