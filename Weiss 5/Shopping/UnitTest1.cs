@@ -15,11 +15,11 @@ namespace Shopping
         public struct ShoppingList
         {
             public string nameOfProduct;
-            public double amount;
-            public ShoppingList(string nameOfProduct, double amount)
+            public double price;
+            public ShoppingList(string nameOfProduct, double price)
             {
                 this.nameOfProduct = nameOfProduct;
-                this.amount = amount;
+                this.price = price;
             }
         }
             public double CalculateTotalPrice(ShoppingList[] shoppingList)
@@ -27,7 +27,7 @@ namespace Shopping
                 double result = 0;
                 for (int i = 0; i < shoppingList.Length; i++)
                 {
-                    result += shoppingList[i].amount;
+                    result += shoppingList[i].price;
                 }
                 return result;
             }
