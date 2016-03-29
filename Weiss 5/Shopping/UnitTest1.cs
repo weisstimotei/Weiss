@@ -28,7 +28,14 @@ namespace Shopping
         public void TestForCountObjects()
         {
             var shopping = new ShoppingList[] { new ShoppingList("milk", 7), new ShoppingList("bread", 3) };
-            Assert.AreEqual(2, CountObjects(RemoveTheMostExpensive(shopping)));
+            Assert.AreEqual(1, CountObjects(RemoveTheMostExpensive(shopping)));
+        }
+        [TestMethod]
+        public void TestForRemoveTheMostExpensive()
+        {
+            var shopping = new ShoppingList[] { new ShoppingList("oil", 4), new ShoppingList("bread", 10) };
+            CollectionAssert.AreEqual(new ShoppingList[] {new ShoppingList("oil",4) }, RemoveTheMostExpensive(shopping));
+
         }
         public struct ShoppingList
         {
@@ -70,13 +77,24 @@ namespace Shopping
         {
             return CalculateTotalPrice(shoppingObject) / shoppingObject.Length;
         }
-        public ShoppingList[] RemoveTheMostExpensive(ShoppingList[] shoppingObjects)
-        {
-            return shoppingObjects;
-        }
         public int CountObjects(ShoppingList[] shoppingObjects)
         {
             return shoppingObjects.Length;
+        }
+        public ShoppingList[] RemoveTheMostExpensive(ShoppingList[] shoppingObjects)
+        {
+            for (int i = 0; i < shoppingObjects.Length; i++)
+                for (int j = 0; j < shoppingObjects.Length - 1; j++)
+                {
+                    if (shoppingObjects[j].price > shoppingObjects[j + 1].price)
+                    {
+                        ShoppingList higherValue = shoppingObjects[j];
+                        shoppingObjects[j] = shoppingObjects[j + 1];
+                        shoppingObjects[j + 1] = higherValue;
+                    }
+                }
+            Array.Resize(ref shoppingObjects, shoppingObjects.Length - 1);
+            return shoppingObjects;
         }
     }
 }
