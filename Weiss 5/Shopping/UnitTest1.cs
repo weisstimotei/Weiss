@@ -24,6 +24,12 @@ namespace Shopping
             var shopping = new ShoppingList[] { new ShoppingList("milk", 10), new ShoppingList("bread", 3) };
             Assert.AreEqual(6.5, GetAverageShopping(shopping));
         }
+        [TestMethod]
+        public void TestForCountObjects()
+        {
+            var shopping = new ShoppingList[] { new ShoppingList("milk", 7), new ShoppingList("bread", 3) };
+            Assert.AreEqual(2, CountObjects(RemoveTheMostExpensive(shopping)));
+        }
         public struct ShoppingList
         {
             public string nameOfProduct;
@@ -63,6 +69,14 @@ namespace Shopping
         public double GetAverageShopping(ShoppingList[] shoppingObject)
         {
             return CalculateTotalPrice(shoppingObject) / shoppingObject.Length;
+        }
+        public ShoppingList[] RemoveTheMostExpensive(ShoppingList[] shoppingObjects)
+        {
+            return shoppingObjects;
+        }
+        public int CountObjects(ShoppingList[] shoppingObjects)
+        {
+            return shoppingObjects.Length;
         }
     }
 }
