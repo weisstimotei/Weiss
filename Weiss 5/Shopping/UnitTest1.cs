@@ -91,16 +91,12 @@ namespace Shopping
         }
         public ShoppingList[] RemoveTheMostExpensive(ShoppingList[] shoppingObjects)
         {
+            ShoppingList firstObject = shoppingObjects[0];
+            ShoppingList result = shoppingObjects[0];
             for (int i = 0; i < shoppingObjects.Length; i++)
-                for (int j = 0; j < shoppingObjects.Length - 1; j++)
-                {
-                    if (shoppingObjects[j].price > shoppingObjects[j + 1].price)
-                    {
-                        ShoppingList higherValue = shoppingObjects[j];
-                        shoppingObjects[j] = shoppingObjects[j + 1];
-                        shoppingObjects[j + 1] = higherValue;
-                    }
-                }
+            {
+                result = (firstObject.price > shoppingObjects[i].price) ? result : shoppingObjects[i];
+            }
             Array.Resize(ref shoppingObjects, shoppingObjects.Length - 1);
             return shoppingObjects;
         }
