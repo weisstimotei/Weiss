@@ -53,7 +53,7 @@ namespace Password
          [TestMethod]
          public void TestForGenerateSymbols()
          {
-             Assert.AreEqual((GenerateSymbols(4)),(GenerateSymbols(4)));
+             Assert.AreEqual((GenerateSymbols(4,true)),(GenerateSymbols(4,true)));
          }
          [TestMethod]
          public void TestForPasswordWithAllOptions()
@@ -65,15 +65,15 @@ namespace Password
         string GetPassword(Options options)
         {
             string result = string.Empty;
-                result = GetSmallLetters(options.smallChars) + GetBigLetters(options.noOfUpperChars) + GetNumbers(options.noOfNumbers) + GenerateSymbols(options.noOfSymbols);
+                result = GetSmallLetters(options.smallChars) + GetBigLetters(options.noOfUpperChars) + GetNumbers(options.noOfNumbers) + GenerateSymbols(options.noOfSymbols,options.notIncludedAmbigueChars);
                 if (options.notIncludedSimilarChars)    
                 {
                      result = RemoveChars(result);
                 }
-                if (options.notIncludedAmbigueChars)
-                {
-                     result = RemoveAmbigueChars(result);
-                }
+              //  if (options.notIncludedAmbigueChars)
+               // {
+                //     result = RemoveAmbigueChars(result);
+               // }
           
             return result;
         }
@@ -189,7 +189,7 @@ namespace Password
         {
             return RemoveChars(inputString, "{}[]()/\'~,;.<> ");        
         }
-        string GenerateSymbols(int numberOfSymbols)
+        string GenerateSymbols(int numberOfSymbols, bool notIncludedAmbigueChars)
         {
             int k = 0;
             int holder;
@@ -199,9 +199,10 @@ namespace Password
             {
                 holder = rand.Next(' ', '/');
                 output += (char)holder;
-                
-                RemoveAmbigueChars(output);
-               
+                if (notIncludedAmbigueChars)
+                {
+                    RemoveAmbigueChars(output);
+                }
                 k = output.Length;
                 k++;
             }
