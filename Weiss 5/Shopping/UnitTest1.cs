@@ -96,22 +96,15 @@ namespace Shopping
         {
             return shoppingObjects.Length;
         }
-        public ShoppingList[] RemoveTheMostExpensive(ShoppingList[] shoppingObjects)
+        public ShoppingList[] RemoveTheMostExpensive(ShoppingList[] products)
         {
-            ShoppingList firstObject = shoppingObjects[0];
-            ShoppingList result = shoppingObjects[0];
-            for (int i = 0; i < shoppingObjects.Length; i++)
-                for (int j = 0; j < shoppingObjects.Length - 1; j++)
-                {
-                    if (shoppingObjects[j].price > shoppingObjects[j + 1].price)
-                    {
-                        ShoppingList higherValue = shoppingObjects[j];
-                        shoppingObjects[j] = shoppingObjects[j + 1];
-                        shoppingObjects[j + 1] = higherValue;
-                    }
-                }
-            Array.Resize(ref shoppingObjects, shoppingObjects.Length - 1);
-            return shoppingObjects;
+            int mostExpensive = GetTheMostExpensiveProduct(products) + 1;
+            for (int i = mostExpensive - 1; i < products.Length - 1; i++)
+            {
+                products[i] = products[i + 1];
+            }
+            Array.Resize(ref products, products.Length - 1);
+            return products;
         }
         int GetTheMostExpensiveProduct(ShoppingList[] products)
         {
@@ -127,6 +120,7 @@ namespace Shopping
             }
             return reminder;
         }
+
         public ShoppingList[] AddObject(ShoppingList[] shoppingObjects, ShoppingList newObject)
         {
             Array.Resize(ref shoppingObjects, shoppingObjects.Length + 1);
