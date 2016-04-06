@@ -16,11 +16,16 @@ namespace Intersection
         {
             Assert.AreEqual(new Point(0, 0), GetTheFirsIntersectionPoint("R"));
         }
+        [TestMethod]
         public void TestIncreaseAndDecreaseYDirection()
         {
             Assert.AreEqual(new Point(0, 0), GetTheFirsIntersectionPoint("UD"));
         }
-        
+        [TestMethod]
+        public void TestIntersectionBasedOnStringUUURRDLU()
+        {
+            Assert.AreEqual(new Point(1, 3), GetTheFirsIntersectionPoint("UUURRDLU"));
+        }
         public struct Point
         {
             public int x,y;
@@ -34,19 +39,19 @@ namespace Intersection
         {
             switch (direction)
             {
-                case 'U':
+                case 'R':
                     piece = new Point(piece.x + 1, piece.y);
                     break;
 
-                case 'D':
+                case 'L':
                     piece = new Point(piece.x - 1, piece.y);
                     break;
 
-                case 'L':
+                case 'D':
                     piece = new Point(piece.x, piece.y - 1);
                     break;
 
-                case 'R':
+                case 'U':
                     piece = new Point(piece.x, piece.y + 1);
                     break;
             }
