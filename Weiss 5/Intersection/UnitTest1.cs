@@ -16,6 +16,10 @@ namespace Intersection
         {
             Assert.AreEqual(new Point(0, 0), GetTheFirsIntersectionPoint("R"));
         }
+        public void TestIncreaseAndDecreaseYDirection()
+        {
+            Assert.AreEqual(new Point(0, 0), GetTheFirsIntersectionPoint("UD"));
+        }
         
         public struct Point
         {
