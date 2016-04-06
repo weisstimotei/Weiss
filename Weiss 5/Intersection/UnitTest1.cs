@@ -26,6 +26,11 @@ namespace Intersection
         {
             Assert.AreEqual(new Point(1, 3), GetTheFirsIntersectionPoint("UUURRDLU"));
         }
+        [TestMethod]
+        public void TestNoIntersectionBasedOnStringUUURRDL()
+        {
+            Assert.AreEqual(new Point(0, 0), GetTheFirsIntersectionPoint("UUURRDL"));
+        }
         public struct Point
         {
             public int x,y;
