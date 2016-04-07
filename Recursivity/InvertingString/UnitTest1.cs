@@ -11,10 +11,18 @@ namespace InvertingString
         {
             Assert.AreEqual("anuB",GetInvertingString("Buna"));
         }
+        [TestMethod]
+        public void TestNoString()
+        {
+            Assert.AreEqual("", GetInvertingString(""));
+        }
         string GetInvertingString(string inputString)
         {
+            if (inputString.Length == 0)
             {
+                return inputString;
             }
+            return inputString[inputString.Length - 1] + GetInvertingString(inputString.Substring(0, inputString.Length - 1));
         }
     }
 }
