@@ -11,6 +11,11 @@ namespace Fibonacci
         {
             Assert.AreEqual(8,GetFibonacci(6));
         }
+        [TestMethod]
+        public void TestWhenTheNumberIs0()
+        {
+            Assert.AreEqual(0, GetFibonacci(0));
+        }
         int GetFibonacci(int number)
         {
             if (number < 2) 
