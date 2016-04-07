@@ -13,7 +13,8 @@ namespace InvertingString
         }
         string GetInvertingString(string inputString)
         {
-            return "anuB";
+            {
+            }
         }
     }
 }
