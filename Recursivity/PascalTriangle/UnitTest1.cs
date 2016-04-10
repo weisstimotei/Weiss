@@ -16,6 +16,11 @@ namespace PascalTriangle
         {
             CollectionAssert.AreEqual(new int[] { 1, 2, 1 }, GetPascalRow(3));
         }
+        [TestMethod]
+        public void TestRow7()
+        {
+            CollectionAssert.AreEqual(new int[] { 1, 6, 15, 20, 15, 6, 1 }, GetPascalRow(7));
+        }
         public int[] GetPascalRow(int numberOfRow)
         {
             int[] output = new int[numberOfRow];
@@ -25,15 +30,13 @@ namespace PascalTriangle
             }
             output[0] = 1;
             output[numberOfRow - 1] = 1;
+            int[] beforeRow = GetPascalRow(numberOfRow - 1);
             for (int i = 1; i < numberOfRow - 1; i++)
             {
-                output[i] = GetNumber(GetPascalRow(i)) + GetNumber(GetPascalRow(i + 1));
+                output[i] = beforeRow[i - 1] + beforeRow[i];
             }
             return output;
         }
-        public int GetNumber(int[] number)
-        {
-            return number[0];
-        }
+       
     }
 }
