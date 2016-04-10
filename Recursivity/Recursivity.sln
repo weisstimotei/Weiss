@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replace Chars", "Replace Chars\Replace Chars.csproj", "{8FC092B8-7A9F-4BDE-BC2D-7F3D76A97795}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PascalTriangle", "PascalTriangle\PascalTriangle.csproj", "{A74836B2-8600-497B-9A7D-079FBBC74DB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8FC092B8-7A9F-4BDE-BC2D-7F3D76A97795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FC092B8-7A9F-4BDE-BC2D-7F3D76A97795}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FC092B8-7A9F-4BDE-BC2D-7F3D76A97795}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FC092B8-7A9F-4BDE-BC2D-7F3D76A97795}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A74836B2-8600-497B-9A7D-079FBBC74DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A74836B2-8600-497B-9A7D-079FBBC74DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A74836B2-8600-497B-9A7D-079FBBC74DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A74836B2-8600-497B-9A7D-079FBBC74DB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
