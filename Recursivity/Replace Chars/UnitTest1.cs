@@ -16,15 +16,22 @@ namespace Replace_Chars
         {
             Assert.AreEqual("aaloaloc", GetReplaceChars("abbc", "alo", "b"));
         }
+        [TestMethod]
+        public void TestForOneLeter()
+        {
+            Assert.AreEqual("alo", GetReplaceChars("a", "alo", "a"));
+        }
         string GetReplaceChars(string inputString, string wordToReplace, string charReplaced)
         {
             string result = string.Empty;
-            if (!inputString.Contains(charReplaced))
+            if (inputString.Length <= 1)
+                return (inputString[0].ToString().Contains(charReplaced)) ? wordToReplace : inputString;
+            if (inputString[inputString.Length - 1].ToString().Contains(charReplaced))
              {
-                 return inputString;
+                 return GetReplaceChars(inputString.Substring(0, inputString.Length - 1), wordToReplace, charReplaced) + wordToReplace;
              }
 
-             return inputString.Replace(charReplaced.ToString(),wordToReplace);
+            return GetReplaceChars(inputString.Substring(0, inputString.Length - 1), wordToReplace, charReplaced) + inputString[inputString.Length - 1];
         }
     }
 }
