@@ -9,11 +9,22 @@ namespace Replace_Chars
         [TestMethod]
         public void TestCheckReplacement()
         {
-            Assert.AreEqual("aaloc", GetReplaceChars("abc", "alo", 'b'));
+            Assert.AreEqual("aaloc", GetReplaceChars("abc", "alo", "b"));
         }
-        string GetReplaceChars(string inputString, string wordToReplace, char charReplaced)
+        [TestMethod]
+        public void TestSwapWithTwoLeters()
         {
-            return "aaloc";
+            Assert.AreEqual("aaloaloc", GetReplaceChars("abbc", "alo", "b"));
+        }
+        string GetReplaceChars(string inputString, string wordToReplace, string charReplaced)
+        {
+            string result = string.Empty;
+            if (!inputString.Contains(charReplaced))
+             {
+                 return inputString;
+             }
+
+             return inputString.Replace(charReplaced.ToString(),wordToReplace);
         }
     }
 }
