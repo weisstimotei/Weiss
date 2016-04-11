@@ -26,17 +26,17 @@ namespace HanoiTowers
         {
             if (disk == 1)
             {
-                return GetMoveDisks(disk, source, destination);
+                return GetResizeMoveDisks(disk, source, destination);
             }
             else
             {
                 GetMoveDisks(disk - 1, source, auxiliar, destination);
-                GetMoveDisks(disk, source, destination);
+                GetResizeMoveDisks(disk, source, destination);
                 GetMoveDisks(disk - 1, auxiliar, destination, source);
             }
             return destination;
         }
-        int[] GetMoveDisks(int disk, int[] source, int[] destination)
+        int[] GetResizeMoveDisks(int disk, int[] source, int[] destination)
         {
             destination[disk - 1] = source[disk - 1];
             Array.Resize(ref source, source.Length - 1);
