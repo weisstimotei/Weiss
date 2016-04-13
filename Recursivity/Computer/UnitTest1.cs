@@ -51,6 +51,11 @@ namespace Computer
             {
                 return number;
             }
+            return GetOperation(inputString, ref index, firstElement);
+        }
+
+        private double GetOperation(string inputString, ref int index, string firstElement)
+        {
             switch (firstElement)
             {
                 case "+": return GetCalculate(inputString, ref index) + GetCalculate(inputString, ref index);
