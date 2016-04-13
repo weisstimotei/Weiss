@@ -30,6 +30,12 @@ namespace Computer
             int index = 0;
             Assert.AreEqual(10, GetCalculate("* 2 5", ref index));
         }
+        [TestMethod]
+        public void TestGetDivision()
+        {
+            int index = 0;
+            Assert.AreEqual(2.5, GetCalculate("/ 5 2", ref index));
+        }
         double GetCalculate(string inputString, ref int index)
         {
             string[] elements = inputString.Split(' ');
@@ -43,6 +49,7 @@ namespace Computer
             {
                 case "+": return GetCalculate(inputString, ref index) + GetCalculate(inputString, ref index);
                 case "*": return GetCalculate(inputString, ref index) * GetCalculate(inputString, ref index);
+                case "/": return GetCalculate(inputString, ref index) / GetCalculate(inputString, ref index);
                 default: return GetCalculate(inputString, ref index) - GetCalculate(inputString, ref index);
             }
         }
