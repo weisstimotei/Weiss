@@ -36,6 +36,12 @@ namespace Computer
             int index = 0;
             Assert.AreEqual(2.5, GetCalculate("/ 5 2", ref index));
         }
+        [TestMethod]
+        public void TestMultipleOperations()
+        {
+            int index = 0;
+            Assert.AreEqual(5, GetCalculate("/ * 5 2 2", ref index));
+        }
         double GetCalculate(string inputString, ref int index)
         {
             string[] elements = inputString.Split(' ');
