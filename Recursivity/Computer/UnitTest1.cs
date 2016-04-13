@@ -9,26 +9,34 @@ namespace Computer
         [TestMethod]
         public void TestAdditionOperation()
         {
-            Assert.AreEqual(7, GetCalculate("+ 2 5 "));
+            int index = 0;
+            Assert.AreEqual(7, GetCalculate("+ 2 5 ", ref index));
         }
         [TestMethod]
         public void TestSubtractionOperation()
         {
-            Assert.AreEqual(3, GetCalculate("- 5 2 "));
+            int index = 0;
+            Assert.AreEqual(3, GetCalculate("- 5 2 ", ref index));
         }
-        double GetCalculate(string inputString)
+        [TestMethod]
+        public void TestCalculateMoreAdditions()
+        {
+            int index = 0;
+            Assert.AreEqual(10, GetCalculate("+ + 4 4 + 1 1", ref index));
+        }
+        double GetCalculate(string inputString, ref int index)
         {
             string[] elements = inputString.Split(' ');
-            string firstElement = elements[0];
+            string firstElement = elements[index++];
             double number;
-            if (Double.TryParse(elements[0], out number))
+            if (Double.TryParse(firstElement, out number))
             {
                 return number;
             }
             switch (firstElement)
             {
-                case "+": return GetCalculate(elements[1]) + GetCalculate(elements[2]);
-                default: return GetCalculate(elements[1]) - GetCalculate(elements[2]);
+                case "+": return GetCalculate(inputString, ref index) + GetCalculate(inputString, ref index);
+                default: return GetCalculate(inputString, ref index) - GetCalculate(inputString, ref index);
             }
         }
     }
